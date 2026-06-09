@@ -1,0 +1,124 @@
+.blueprint-scroll.frame-build-mode .blueprint-drawing {
+  opacity: .36;
+  transform:
+    rotateX(calc(58deg - var(--scroll-progress) * 50deg))
+    rotateZ(calc(-6deg + var(--scroll-progress) * 6deg))
+    translateY(calc(74px - var(--scroll-progress) * 92px))
+    scale(calc(.88 + var(--scroll-progress) * .1));
+}
+
+.frame-stack {
+  position: absolute;
+  left: 50%;
+  top: 48%;
+  width: min(760px, 72vw);
+  height: min(430px, 42vw);
+  transform-style: preserve-3d;
+  transform:
+    translate(-50%, -50%)
+    rotateX(calc(67deg - var(--scroll-progress) * 58deg))
+    rotateZ(calc(-8deg + var(--scroll-progress) * 8deg))
+    translateY(calc(64px - var(--scroll-progress) * 86px));
+  transition: transform .08s linear;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.frame-layer {
+  position: absolute;
+  inset: 0;
+  border: 2px solid rgba(244,239,228,.72);
+  background: rgba(244,239,228,.018);
+  box-shadow: 0 0 0 1px rgba(244,239,228,.06), 0 30px 80px rgba(0,0,0,.18);
+  opacity: 0;
+  transform: translateZ(0) scale(.96);
+  transition: opacity .38s ease, transform .42s ease, border-color .38s ease, background .38s ease;
+}
+.frame-layer::before,
+.frame-layer::after {
+  content: '';
+  position: absolute;
+  background: currentColor;
+  opacity: .74;
+}
+.frame-layer::before { left: 50%; top: 0; bottom: 0; width: 2px; transform: translateX(-50%); }
+.frame-layer::after { left: 0; right: 0; top: 50%; height: 2px; transform: translateY(-50%); }
+
+.frame-opening {
+  inset: 2% 2%;
+  color: rgba(244,239,228,.34);
+  border-color: rgba(244,239,228,.34);
+  transform: translateZ(-54px) scale(1.08);
+}
+.frame-outer {
+  inset: 7% 8%;
+  color: rgba(210,165,95,.7);
+  border-color: rgba(210,165,95,.72);
+  transform: translateZ(0) scale(.98);
+}
+.frame-inner {
+  inset: 14% 16%;
+  color: rgba(244,239,228,.82);
+  border-color: rgba(244,239,228,.82);
+  transform: translateZ(58px) scale(.94);
+}
+.frame-glass {
+  inset: 21% 23%;
+  color: rgba(155,202,221,.64);
+  border-color: rgba(155,202,221,.54);
+  background: linear-gradient(135deg, rgba(155,202,221,.16), rgba(244,239,228,.04));
+  transform: translateZ(112px) scale(.88);
+}
+.frame-glass::before { box-shadow: -120px 0 0 rgba(155,202,221,.35), 120px 0 0 rgba(155,202,221,.35); }
+.frame-glass::after { opacity: .28; }
+.frame-comfort {
+  inset: 11% 11% auto;
+  height: 34px;
+  color: rgba(210,165,95,.82);
+  border-color: rgba(210,165,95,.8);
+  background: repeating-linear-gradient(90deg, rgba(210,165,95,.38) 0 18px, transparent 18px 34px);
+  transform: translateZ(162px) scale(.86);
+}
+.frame-comfort::before,
+.frame-comfort::after { display: none; }
+
+.frame-build-mode.step-1 .frame-opening,
+.frame-build-mode.step-2 .frame-opening,
+.frame-build-mode.step-3 .frame-opening,
+.frame-build-mode.step-4 .frame-opening {
+  opacity: 1;
+  transform: translateZ(-54px) scale(1);
+}
+.frame-build-mode.step-2 .frame-outer,
+.frame-build-mode.step-3 .frame-outer,
+.frame-build-mode.step-4 .frame-outer {
+  opacity: 1;
+  transform: translateZ(0) scale(1);
+}
+.frame-build-mode.step-3 .frame-inner,
+.frame-build-mode.step-4 .frame-inner {
+  opacity: 1;
+  transform: translateZ(58px) scale(1);
+}
+.frame-build-mode.step-3 .frame-glass,
+.frame-build-mode.step-4 .frame-glass {
+  opacity: 1;
+  transform: translateZ(112px) scale(1);
+}
+.frame-build-mode.step-4 .frame-comfort {
+  opacity: 1;
+  transform: translateZ(162px) scale(1);
+}
+
+.frame-build-mode.step-4 .frame-stack {
+  filter: drop-shadow(0 0 38px rgba(210,165,95,.1));
+}
+
+@media (max-width: 760px) {
+  .frame-stack {
+    width: 88vw;
+    height: 52vw;
+    top: 46%;
+  }
+  .blueprint-scroll.frame-build-mode .blueprint-drawing { opacity: .22; }
+}
