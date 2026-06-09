@@ -5,17 +5,23 @@ function injectBlueprintScroll() {
     link.href = 'scroll.css';
     document.head.appendChild(link);
   }
+  if (!document.querySelector('link[href="frame-build.css"]')) {
+    const frameLink = document.createElement('link');
+    frameLink.rel = 'stylesheet';
+    frameLink.href = 'frame-build.css';
+    document.head.appendChild(frameLink);
+  }
 
   const hero = document.querySelector('.hero');
   if (!hero || document.querySelector('.blueprint-scroll')) return;
 
   const section = document.createElement('section');
-  section.className = 'blueprint-scroll';
+  section.className = 'blueprint-scroll frame-build-mode';
   section.innerHTML = `
     <div class="blueprint-sticky">
       <div class="blueprint-inner">
         <div class="blueprint-orbit"></div>
-        <div class="blueprint-meta"><span>RENOVATION SYSTEM</span><span>SCROLL // 3D TECHNICAL PREVIEW</span></div>
+        <div class="blueprint-meta"><span>RENOVATION SYSTEM</span><span>SCROLL // FRAME BUILD SEQUENCE</span></div>
         <svg class="blueprint-drawing" viewBox="0 0 1200 620" aria-label="Technische kozijnrenovatie animatie">
           <rect class="blueprint-frame-fill" x="326" y="140" width="548" height="330" rx="0" />
           <rect class="blueprint-glass-fill" x="374" y="188" width="204" height="104" rx="0" />
@@ -34,11 +40,18 @@ function injectBlueprintScroll() {
           <path class="blueprint-line line-4" pathLength="1" d="M170 545 H1030"/>
           <path class="blueprint-line line-4 accent" pathLength="1" d="M420 104 L420 72 H238 M780 104 L780 72 H962 M874 372 H1010 V430 M326 410 H214 V478"/>
         </svg>
+        <div class="frame-stack" aria-hidden="true">
+          <div class="frame-layer frame-opening"></div>
+          <div class="frame-layer frame-outer"></div>
+          <div class="frame-layer frame-inner"></div>
+          <div class="frame-layer frame-glass"></div>
+          <div class="frame-layer frame-comfort"></div>
+        </div>
         <div class="blueprint-label label-profile">Renovatieprofiel</div>
         <div class="blueprint-label label-glass">HR++ / triple glas</div>
         <div class="blueprint-label label-vent">Ventilatie & comfort</div>
         <div class="blueprint-label label-mount">Inmeten & montage</div>
-        <h2 class="blueprint-title">Van ruwe situatie naar helder renovatieplan.</h2>
+        <h2 class="blueprint-title">Frame voor frame opgebouwd tot renovatieplan.</h2>
       </div>
     </div>`;
   hero.insertAdjacentElement('afterend', section);
@@ -52,10 +65,10 @@ function updateBlueprintScroll() {
   const progress = Math.min(1, Math.max(0, -rect.top / Math.max(max, 1)));
   section.style.setProperty('--scroll-progress', progress.toFixed(3));
   section.classList.toggle('is-active', progress > 0.03);
-  section.classList.toggle('step-1', progress > 0.12);
-  section.classList.toggle('step-2', progress > 0.32);
-  section.classList.toggle('step-3', progress > 0.54);
-  section.classList.toggle('step-4', progress > 0.75);
+  section.classList.toggle('step-1', progress > 0.10);
+  section.classList.toggle('step-2', progress > 0.28);
+  section.classList.toggle('step-3', progress > 0.48);
+  section.classList.toggle('step-4', progress > 0.68);
 }
 
 injectBlueprintScroll();
