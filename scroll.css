@@ -1,0 +1,149 @@
+.blueprint-scroll {
+  position: relative;
+  min-height: 240vh;
+  background:
+    linear-gradient(90deg, rgba(244,239,228,.04) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(244,239,228,.03) 1px, transparent 1px),
+    radial-gradient(circle at 18% 72%, rgba(197,78,54,.18), transparent 28rem),
+    #080a08;
+  background-size: 64px 64px, 64px 64px, auto, auto;
+  border-top: 1px solid rgba(244,239,228,.14);
+  border-bottom: 1px solid rgba(244,239,228,.14);
+  overflow: clip;
+}
+
+.blueprint-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 84px 22px 48px;
+}
+
+.blueprint-inner {
+  width: min(1240px, 100%);
+  height: min(760px, calc(100vh - 120px));
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+
+.blueprint-meta {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 3;
+  display: grid;
+  gap: 12px;
+  color: rgba(244,239,228,.52);
+  font-size: 10px;
+  font-weight: 950;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+.blueprint-meta span:first-child { color: #d2a55f; }
+
+.blueprint-drawing {
+  width: min(1080px, 96%);
+  height: auto;
+  overflow: visible;
+  filter: drop-shadow(0 30px 80px rgba(0,0,0,.38));
+}
+
+.blueprint-line {
+  fill: none;
+  stroke: rgba(244,239,228,.82);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  opacity: .98;
+  transition: stroke-dashoffset .1s linear, opacity .2s ease;
+}
+.blueprint-line.soft { stroke: rgba(244,239,228,.38); stroke-width: 1.5; }
+.blueprint-line.accent { stroke: #d2a55f; stroke-width: 2.2; }
+.blueprint-fill { fill: rgba(244,239,228,.035); opacity: 0; transition: opacity .25s ease; }
+
+.blueprint-label {
+  position: absolute;
+  z-index: 4;
+  min-width: 190px;
+  padding: 12px 14px;
+  border: 1px solid rgba(244,239,228,.22);
+  background: rgba(8,10,8,.72);
+  color: rgba(244,239,228,.72);
+  font-size: 10px;
+  font-weight: 950;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity .3s ease, transform .3s ease;
+}
+.blueprint-label::before {
+  content: '';
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-right: 9px;
+  border: 1px solid #d2a55f;
+  vertical-align: -1px;
+}
+.label-profile { left: 8%; top: 26%; }
+.label-glass { right: 8%; top: 22%; }
+.label-vent { right: 15%; bottom: 27%; }
+.label-mount { left: 18%; bottom: 20%; }
+
+.blueprint-title {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 4%;
+  z-index: 3;
+  margin: 0 auto;
+  max-width: 980px;
+  text-align: center;
+  color: #f4efe4;
+  font-size: clamp(36px, 5vw, 78px);
+  line-height: 1.05;
+  letter-spacing: -.06em;
+  font-weight: 500;
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity .35s ease, transform .35s ease;
+}
+
+.blueprint-scroll.is-active .blueprint-fill { opacity: .9; }
+.blueprint-scroll.step-1 .line-1,
+.blueprint-scroll.step-2 .line-1,
+.blueprint-scroll.step-2 .line-2,
+.blueprint-scroll.step-3 .line-1,
+.blueprint-scroll.step-3 .line-2,
+.blueprint-scroll.step-3 .line-3,
+.blueprint-scroll.step-4 .blueprint-line { stroke-dashoffset: 0; }
+.blueprint-scroll.step-1 .label-profile,
+.blueprint-scroll.step-2 .label-profile,
+.blueprint-scroll.step-2 .label-glass,
+.blueprint-scroll.step-3 .label-profile,
+.blueprint-scroll.step-3 .label-glass,
+.blueprint-scroll.step-3 .label-vent,
+.blueprint-scroll.step-4 .blueprint-label,
+.blueprint-scroll.step-4 .blueprint-title {
+  opacity: 1;
+  transform: translateY(0);
+}
+.blueprint-scroll.step-4 .blueprint-title { opacity: 1; }
+
+@media (max-width: 760px) {
+  .blueprint-scroll { min-height: 190vh; }
+  .blueprint-sticky { padding-top: 74px; }
+  .blueprint-inner { height: calc(100vh - 100px); }
+  .blueprint-label { min-width: auto; max-width: 170px; font-size: 8px; padding: 9px 10px; }
+  .label-profile { left: 0; top: 18%; }
+  .label-glass { right: 0; top: 22%; }
+  .label-vent { right: 0; bottom: 28%; }
+  .label-mount { left: 0; bottom: 26%; }
+  .blueprint-title { bottom: 6%; font-size: 34px; }
+}
