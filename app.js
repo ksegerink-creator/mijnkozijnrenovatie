@@ -14,13 +14,19 @@ function injectBlueprintScroll() {
   section.innerHTML = `
     <div class="blueprint-sticky">
       <div class="blueprint-inner">
-        <div class="blueprint-meta"><span>RENOVATION SYSTEM</span><span>SCROLL // TECHNICAL PREVIEW</span></div>
+        <div class="blueprint-orbit"></div>
+        <div class="blueprint-meta"><span>RENOVATION SYSTEM</span><span>SCROLL // 3D TECHNICAL PREVIEW</span></div>
         <svg class="blueprint-drawing" viewBox="0 0 1200 620" aria-label="Technische kozijnrenovatie animatie">
-          <rect class="blueprint-fill" x="326" y="140" width="548" height="330" rx="0" />
+          <rect class="blueprint-frame-fill" x="326" y="140" width="548" height="330" rx="0" />
+          <rect class="blueprint-glass-fill" x="374" y="188" width="204" height="104" rx="0" />
+          <rect class="blueprint-glass-fill" x="622" y="188" width="204" height="104" rx="0" />
+          <rect class="blueprint-glass-fill" x="374" y="328" width="204" height="104" rx="0" />
+          <rect class="blueprint-glass-fill" x="622" y="328" width="204" height="104" rx="0" />
           <path class="blueprint-line line-1" pathLength="1" d="M326 140 H874 V470 H326 Z"/>
           <path class="blueprint-line line-1" pathLength="1" d="M356 170 H844 V440 H356 Z"/>
           <path class="blueprint-line line-2" pathLength="1" d="M600 140 V470 M326 305 H874"/>
           <path class="blueprint-line line-2 soft" pathLength="1" d="M356 170 L600 305 L356 440 M844 170 L600 305 L844 440"/>
+          <path class="blueprint-line line-3 depth" pathLength="1" d="M326 140 L386 94 H934 L874 140 M874 470 L934 424 V94 M326 470 L386 424 H934"/>
           <path class="blueprint-line line-3 accent" pathLength="1" d="M326 108 H874 M326 104 V120 M874 104 V120"/>
           <path class="blueprint-line line-3 accent" pathLength="1" d="M284 140 V470 M280 140 H298 M280 470 H298"/>
           <path class="blueprint-line line-4 soft" pathLength="1" d="M210 96 H990 V520 H210 Z"/>
@@ -44,6 +50,7 @@ function updateBlueprintScroll() {
   const rect = section.getBoundingClientRect();
   const max = section.offsetHeight - window.innerHeight;
   const progress = Math.min(1, Math.max(0, -rect.top / Math.max(max, 1)));
+  section.style.setProperty('--scroll-progress', progress.toFixed(3));
   section.classList.toggle('is-active', progress > 0.03);
   section.classList.toggle('step-1', progress > 0.12);
   section.classList.toggle('step-2', progress > 0.32);
