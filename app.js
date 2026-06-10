@@ -41,6 +41,12 @@ function injectBlueprintScroll() {
     heroLink.href = 'hero-showcase.css';
     document.head.appendChild(heroLink);
   }
+  if (!document.querySelector('link[href="hero-realistic.css"]')) {
+    const realisticHeroLink = document.createElement('link');
+    realisticHeroLink.rel = 'stylesheet';
+    realisticHeroLink.href = 'hero-realistic.css';
+    document.head.appendChild(realisticHeroLink);
+  }
 
   const hero = document.querySelector('.hero');
   if (!hero || document.querySelector('.blueprint-scroll')) return;
