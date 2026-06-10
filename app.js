@@ -13,7 +13,8 @@ function injectBlueprintScroll() {
     'motion-benefits.css',
     'config-premium.css',
     'stabilize-fix.css',
-    'real3d-corrective.css'
+    'real3d-corrective.css',
+    'preview-realistic.css'
   ];
 
   stylesheets.forEach((href) => {
@@ -272,7 +273,7 @@ const sumPrice = document.querySelector('#sumPrice');
 const preview = document.querySelector('#windowPreview');
 let currentStep = 1;
 const labels = { type: { kozijn: 'Kozijn', deur: 'Deur', schuifpui: 'Schuifpui', meerdere: 'Meerdere' }, model: { vast: 'Vast glas', draaikiep: 'Draaikiep', 'twee-vaks': '2-vaks', paneel: 'Met paneel' }, color: { white: 'Helder wit', cream: 'Creme', anthracite: 'Antraciet', black: 'Zwart', wood: 'Houtlook' } };
-const themes = { white: ['#f8f8f3','#ffffff','#ece7de','#d8d0c6'], cream: ['#e6d5ba','#f5ead8','#ddc8a6','#bca17f'], anthracite: ['#314740','#5f716d','#263a34','#1a2924'], black: ['#22201f','#4f4b49','#2a2827','#141312'], wood: ['#9a6338','#cb905f','#714321'] };
+const themes = { white: ['#f8f8f3','#ffffff','#ece7de','#d8d0c6'], cream: ['#e6d5ba','#f5ead8','#ddc8a6','#bca17f'], anthracite: ['#314740','#5f716d','#1a2924'], black: ['#22201f','#4f4b49','#141312'], wood: ['#9a6338','#cb905f','#714321'] };
 const stepTitles = ['Type','Indeling','Uitstraling','Comfort','Aanvraag'];
 function state() { const data = new FormData(form); return { type: data.get('type') || 'kozijn', model: data.get('model') || 'vast', color: data.get('color') || 'white', vent: data.get('vent') === 'on', panel: data.get('panel') === 'on', montage: data.get('montage') === 'on', glass: data.get('glass') || 'hrpp' }; }
 function op(id, value) { const el = document.querySelector(id); if (el) el.style.opacity = value; }
