@@ -1,0 +1,327 @@
+:root {
+  --sun-bg: #f7f1e5;
+  --sun-bg-2: #ece3d2;
+  --sun-ink: #102019;
+  --sun-muted: #6f756b;
+  --sun-green: #183c2d;
+  --sun-green-2: #0f2a20;
+  --sun-lime: #d7f36b;
+  --sun-yellow: #f2c96b;
+  --sun-card: #fffaf0;
+  --sun-line: rgba(16, 32, 25, .12);
+}
+
+body {
+  background:
+    radial-gradient(circle at 78% 8%, rgba(215,243,107,.28), transparent 27rem),
+    radial-gradient(circle at 9% 24%, rgba(242,201,107,.20), transparent 25rem),
+    linear-gradient(180deg, var(--sun-bg) 0%, #fbf7ef 46%, var(--sun-bg-2) 100%) !important;
+  color: var(--sun-ink) !important;
+}
+
+.noise {
+  opacity: .12 !important;
+  background-size: 36px 36px !important;
+  mask-image: none !important;
+}
+
+.site-header {
+  top: 18px !important;
+  padding: 12px 14px !important;
+  border-radius: 999px !important;
+  background: rgba(255,250,240,.82) !important;
+  border: 1px solid rgba(16,32,25,.10) !important;
+  box-shadow: 0 20px 70px rgba(16,32,25,.10) !important;
+  backdrop-filter: blur(26px) !important;
+}
+
+.brand,
+.nav a {
+  color: var(--sun-ink) !important;
+}
+
+.brand-mark {
+  border-radius: 50% !important;
+  background: var(--sun-green) !important;
+  color: #fffaf0 !important;
+}
+
+.nav {
+  color: rgba(16,32,25,.62) !important;
+  text-transform: none !important;
+  letter-spacing: -.01em !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+}
+
+.nav-cta,
+.button-primary {
+  border-radius: 999px !important;
+  background: var(--sun-lime) !important;
+  color: var(--sun-ink) !important;
+  box-shadow: 0 18px 40px rgba(16,32,25,.12) !important;
+}
+
+.button-ghost {
+  border-radius: 999px !important;
+  background: #fffaf0 !important;
+  color: var(--sun-ink) !important;
+  border: 1px solid var(--sun-line) !important;
+}
+
+.hero {
+  min-height: 760px !important;
+  padding-top: 76px !important;
+  padding-bottom: 54px !important;
+  grid-template-columns: .95fr 1.05fr !important;
+}
+
+.hero::before {
+  background: transparent !important;
+}
+
+.eyebrow {
+  color: var(--sun-green) !important;
+  letter-spacing: .08em !important;
+  font-size: 12px !important;
+}
+
+.hero h1,
+.config-heading h2,
+.confidence h2,
+legend {
+  font-family: Inter, system-ui, sans-serif !important;
+  font-weight: 850 !important;
+  letter-spacing: -.075em !important;
+}
+
+.hero h1 {
+  max-width: 740px !important;
+  font-size: clamp(58px, 7.6vw, 116px) !important;
+  line-height: .9 !important;
+  color: var(--sun-ink) !important;
+}
+
+.hero-text {
+  color: rgba(16,32,25,.64) !important;
+  max-width: 590px !important;
+  font-size: clamp(17px, 1.25vw, 21px) !important;
+}
+
+.trust-row {
+  gap: 8px !important;
+}
+
+.trust-row span {
+  border-radius: 999px !important;
+  background: rgba(255,250,240,.72) !important;
+  border: 1px solid rgba(16,32,25,.10) !important;
+  color: rgba(16,32,25,.66) !important;
+  text-transform: none !important;
+  letter-spacing: -.01em !important;
+  font-size: 13px !important;
+}
+
+.visual-card {
+  border-radius: 34px !important;
+  background:
+    radial-gradient(circle at 78% 15%, rgba(215,243,107,.38), transparent 12rem),
+    linear-gradient(135deg, #214233, #132b21 58%, #0e211a) !important;
+  border: 1px solid rgba(16,32,25,.12) !important;
+  box-shadow: 0 36px 100px rgba(16,32,25,.22) !important;
+}
+
+.visual-card::before,
+.visual-card::after {
+  display: none !important;
+}
+
+.before-tag,
+.after-tag {
+  border-radius: 999px !important;
+  background: rgba(255,250,240,.16) !important;
+  border: 1px solid rgba(255,250,240,.20) !important;
+  color: #fffaf0 !important;
+}
+
+.after-tag { color: var(--sun-lime) !important; }
+
+.intro-strip {
+  border-radius: 30px !important;
+  overflow: hidden !important;
+  border: 1px solid var(--sun-line) !important;
+  background: var(--sun-line) !important;
+  box-shadow: 0 30px 90px rgba(16,32,25,.08) !important;
+}
+
+.intro-strip > div {
+  background: rgba(255,250,240,.76) !important;
+}
+
+.intro-strip h2,
+.intro-strip p {
+  color: var(--sun-ink) !important;
+}
+
+.intro-strip p { color: rgba(16,32,25,.62) !important; }
+.strip-number { color: var(--sun-green) !important; }
+
+.blueprint-scroll {
+  margin-top: 0 !important;
+  background:
+    radial-gradient(circle at 78% 20%, rgba(215,243,107,.22), transparent 26rem),
+    radial-gradient(circle at 14% 76%, rgba(242,201,107,.24), transparent 26rem),
+    linear-gradient(90deg, rgba(16,32,25,.052) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(16,32,25,.045) 1px, transparent 1px),
+    #eff2df !important;
+  background-size: auto, auto, 64px 64px, 64px 64px, auto !important;
+  border-top: 1px solid rgba(16,32,25,.10) !important;
+  border-bottom: 1px solid rgba(16,32,25,.10) !important;
+}
+
+.blueprint-scroll::before {
+  background: linear-gradient(180deg, rgba(247,241,229,0), rgba(239,242,223,.78) 55%, rgba(239,242,223,0)) !important;
+}
+
+.blueprint-sticky {
+  background: radial-gradient(circle at 50% 42%, rgba(255,255,255,.68), transparent 30rem) !important;
+}
+
+.blueprint-meta,
+.blueprint-label,
+.blueprint-title {
+  color: var(--sun-ink) !important;
+  text-shadow: none !important;
+}
+
+.blueprint-meta span:first-child,
+.blueprint-meta span,
+.blueprint-label {
+  color: rgba(16,32,25,.60) !important;
+}
+
+.frame-opening,
+.frame-inner,
+.frame-sill {
+  border-color: rgba(16,32,25,.22) !important;
+}
+
+.frame-outer {
+  border-color: rgba(24,60,45,.72) !important;
+  background: rgba(24,60,45,.05) !important;
+}
+
+.frame-outer::before,
+.frame-outer::after {
+  background: rgba(24,60,45,.68) !important;
+}
+
+.frame-inner {
+  border-color: rgba(255,250,240,.94) !important;
+}
+
+.frame-inner::before,
+.frame-inner::after {
+  background: rgba(255,250,240,.94) !important;
+}
+
+.frame-comfort {
+  border-color: rgba(215,243,107,.88) !important;
+  background:
+    repeating-linear-gradient(90deg, rgba(215,243,107,.56) 0 10px, transparent 10px 20px),
+    rgba(215,243,107,.16) !important;
+}
+
+.blueprint-line {
+  stroke: rgba(16,32,25,.42) !important;
+}
+
+.blueprint-line.accent {
+  stroke: var(--sun-green) !important;
+}
+
+.blueprint-title {
+  color: var(--sun-ink) !important;
+  font-weight: 850 !important;
+}
+
+.label-profile,
+.label-glass,
+.label-vent,
+.label-mount {
+  color: rgba(16,32,25,.56) !important;
+}
+
+.config-section {
+  background:
+    radial-gradient(circle at 82% 8%, rgba(215,243,107,.20), transparent 24rem),
+    linear-gradient(180deg, #fffaf0 0%, #f3eadb 100%) !important;
+}
+
+.configurator {
+  border-radius: 34px !important;
+  overflow: hidden !important;
+  background: rgba(16,32,25,.10) !important;
+  box-shadow: 0 40px 110px rgba(16,32,25,.12) !important;
+}
+
+.config-panel,
+.preview-stage {
+  background: rgba(255,250,240,.86) !important;
+}
+
+.option-card,
+.swatch-card,
+.toggle-row,
+.select-label,
+.field-grid label,
+.wide-field,
+.upload-box,
+.preview-summary div {
+  border-radius: 22px !important;
+  background: rgba(255,255,255,.62) !important;
+}
+
+.option-grid,
+.swatch-grid,
+.toggle-list,
+.field-grid,
+.config-actions,
+.preview-summary {
+  gap: 12px !important;
+  background: transparent !important;
+}
+
+.window-scene {
+  border-radius: 28px !important;
+}
+
+.confidence {
+  color: var(--sun-ink) !important;
+}
+
+.confidence-copy p:not(.eyebrow),
+.confidence-grid p {
+  color: rgba(16,32,25,.64) !important;
+}
+
+.confidence-grid {
+  gap: 12px !important;
+  background: transparent !important;
+}
+
+.confidence-grid article {
+  border-radius: 28px !important;
+  background: rgba(255,250,240,.72) !important;
+  color: var(--sun-ink) !important;
+  border: 1px solid var(--sun-line) !important;
+}
+
+.site-footer {
+  color: rgba(16,32,25,.62) !important;
+  border-top-color: var(--sun-line) !important;
+}
+
+@media (max-width: 980px) {
+  .hero { grid-template-columns: 1fr !important; }
+}
