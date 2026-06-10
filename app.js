@@ -17,6 +17,12 @@ function injectBlueprintScroll() {
     transitionLink.href = 'transition-fix.css';
     document.head.appendChild(transitionLink);
   }
+  if (!document.querySelector('link[href="annotation-refine.css"]')) {
+    const annotationLink = document.createElement('link');
+    annotationLink.rel = 'stylesheet';
+    annotationLink.href = 'annotation-refine.css';
+    document.head.appendChild(annotationLink);
+  }
 
   const hero = document.querySelector('.hero');
   if (!hero || document.querySelector('.blueprint-scroll')) return;
