@@ -1,0 +1,290 @@
+:root {
+  --bg: #151712;
+  --cream: #f6f0e6;
+  --cream-dim: rgba(246,240,230,.74);
+  --accent: #d3a461;
+  --frame-line: rgba(246,240,230,.18);
+}
+
+body {
+  background:
+    linear-gradient(90deg, rgba(246,240,230,.045) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(246,240,230,.035) 1px, transparent 1px),
+    radial-gradient(circle at 70% 8%, rgba(211,164,97,.20), transparent 28rem),
+    radial-gradient(circle at 14% 36%, rgba(246,240,230,.10), transparent 30rem),
+    #151712;
+  background-size: 72px 72px, 72px 72px, auto, auto, auto;
+}
+
+.site-header {
+  background: rgba(22,24,19,.76);
+  border-color: rgba(246,240,230,.18);
+}
+
+.hero {
+  min-height: 780px;
+  padding-bottom: 38px;
+}
+
+.hero h1 {
+  font-size: clamp(64px, 8.4vw, 126px);
+}
+
+.hero-text {
+  color: rgba(246,240,230,.78);
+}
+
+.visual-card {
+  background:
+    linear-gradient(90deg, rgba(246,240,230,.055) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(246,240,230,.045) 1px, transparent 1px),
+    linear-gradient(145deg, #2a2e25, #171a14 58%, #10120e);
+  background-size: 46px 46px, 46px 46px, auto;
+}
+
+.blueprint-scroll {
+  background:
+    linear-gradient(90deg, rgba(246,240,230,.052) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(246,240,230,.04) 1px, transparent 1px),
+    radial-gradient(circle at 18% 72%, rgba(197,78,54,.16), transparent 28rem),
+    radial-gradient(circle at 76% 20%, rgba(211,164,97,.16), transparent 30rem),
+    #151712 !important;
+  background-size: 64px 64px, 64px 64px, auto, auto, auto !important;
+}
+
+.blueprint-scroll::before {
+  background:
+    linear-gradient(180deg, rgba(21,23,18,0) 0%, rgba(21,23,18,.52) 52%, rgba(21,23,18,0) 100%),
+    radial-gradient(circle at 50% 0%, rgba(211,164,97,.18), transparent 34rem) !important;
+}
+
+.blueprint-sticky {
+  background: radial-gradient(circle at 50% 44%, rgba(246,240,230,.05), transparent 32rem);
+}
+
+.blueprint-meta {
+  left: 0 !important;
+  top: 24px !important;
+  opacity: .88 !important;
+}
+
+.blueprint-meta span:first-child {
+  color: var(--accent) !important;
+}
+
+.blueprint-inner::before,
+.blueprint-inner::after,
+.blueprint-orbit {
+  opacity: .28 !important;
+}
+
+.frame-stack {
+  top: 44% !important;
+  width: min(680px, 66vw) !important;
+  height: min(470px, 44vw) !important;
+}
+
+.frame-outer {
+  border-color: rgba(211,164,97,.68) !important;
+  background: rgba(211,164,97,.035) !important;
+}
+
+.frame-outer::before,
+.frame-outer::after {
+  background: rgba(211,164,97,.64) !important;
+}
+
+.frame-inner {
+  border-color: rgba(246,240,230,.72) !important;
+}
+
+.frame-inner::before,
+.frame-inner::after {
+  background: rgba(246,240,230,.72) !important;
+}
+
+.frame-comfort {
+  opacity: .82;
+}
+
+.blueprint-title {
+  max-width: 760px !important;
+  bottom: 6.5% !important;
+  font-size: clamp(32px, 3.65vw, 58px) !important;
+  line-height: 1.04 !important;
+  opacity: .92 !important;
+}
+
+.blueprint-label {
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 0 0 0 18px !important;
+  color: rgba(246,240,230,.48) !important;
+  font-size: 9px !important;
+  letter-spacing: .16em !important;
+  line-height: 1.1 !important;
+  width: 190px !important;
+  max-width: 190px !important;
+  white-space: normal !important;
+  text-align: left !important;
+  transform: none !important;
+}
+
+.blueprint-label::before {
+  position: absolute !important;
+  left: 0 !important;
+  top: 1px !important;
+  width: 7px !important;
+  height: 7px !important;
+  margin: 0 !important;
+  border-color: rgba(211,164,97,.78) !important;
+  background: transparent !important;
+}
+
+.blueprint-label::after {
+  display: none !important;
+}
+
+.label-profile,
+.label-glass,
+.label-vent,
+.label-mount {
+  left: 3.8% !important;
+  right: auto !important;
+  bottom: auto !important;
+  opacity: .72 !important;
+}
+
+.label-profile { top: 38% !important; }
+.label-glass { top: calc(38% + 44px) !important; }
+.label-vent { top: calc(38% + 88px) !important; }
+.label-mount { top: calc(38% + 132px) !important; }
+
+.label-profile::before,
+.label-glass::before,
+.label-vent::before,
+.label-mount::before {
+  content: '' !important;
+}
+
+.blueprint-inner::before {
+  content: '01\A 02\A 03\A 04' !important;
+  white-space: pre;
+  left: 2.6% !important;
+  top: 36.6% !important;
+  right: auto !important;
+  bottom: auto !important;
+  width: 1px !important;
+  height: 180px !important;
+  border: 0 !important;
+  border-left: 1px solid rgba(246,240,230,.18) !important;
+  padding-left: 18px;
+  color: rgba(246,240,230,.26);
+  font-size: 9px;
+  line-height: 44px;
+  font-weight: 900;
+  letter-spacing: .12em;
+  transform: none !important;
+  opacity: 1 !important;
+}
+
+.config-section {
+  background:
+    linear-gradient(90deg, rgba(21,23,18,.035) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(21,23,18,.025) 1px, transparent 1px),
+    #eee5d8 !important;
+  background-size: 64px 64px, 64px 64px, auto !important;
+  color: #151712 !important;
+}
+
+.config-section .eyebrow,
+.config-section .config-heading h2,
+.config-section .config-heading p {
+  color: #151712 !important;
+}
+
+.config-section .config-heading p:not(.eyebrow) {
+  color: rgba(21,23,18,.68) !important;
+}
+
+.configurator {
+  background: rgba(21,23,18,.18) !important;
+  border-color: rgba(21,23,18,.16) !important;
+}
+
+.config-panel,
+.preview-stage {
+  background: rgba(249,244,235,.86) !important;
+  color: #151712 !important;
+}
+
+.config-panel legend,
+.option-title,
+.toggle-row strong,
+.select-label,
+.field-grid label,
+.wide-field,
+.preview-summary strong {
+  color: #151712 !important;
+}
+
+.step-help,
+.option-copy,
+.toggle-row small,
+.upload-box p,
+.preview-topline,
+.preview-summary span {
+  color: rgba(21,23,18,.58) !important;
+}
+
+.option-card,
+.swatch-card,
+.toggle-row,
+.select-label,
+.field-grid label,
+.wide-field,
+.upload-box,
+.preview-summary div {
+  background: rgba(255,255,255,.46) !important;
+  color: #151712 !important;
+}
+
+.option-card:has(input:checked),
+.swatch-card:has(input:checked) {
+  background: rgba(211,164,97,.18) !important;
+  box-shadow: inset 0 0 0 1px rgba(21,23,18,.5) !important;
+}
+
+.window-scene {
+  background:
+    linear-gradient(90deg, rgba(21,23,18,.05) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(21,23,18,.04) 1px, transparent 1px),
+    radial-gradient(circle at 50% 18%, rgba(255,255,255,.56), transparent 18rem),
+    linear-gradient(180deg, #eee5d8 0%, #d9cbb7 100%) !important;
+  background-size: 46px 46px, 46px 46px, auto, auto !important;
+}
+
+.confidence {
+  color: #f6f0e6 !important;
+}
+
+@media (max-width: 900px) {
+  .blueprint-inner::before { display: none !important; }
+  .blueprint-label {
+    width: 130px !important;
+    max-width: 130px !important;
+    font-size: 8px !important;
+  }
+  .label-profile,
+  .label-glass,
+  .label-vent,
+  .label-mount { left: 4% !important; }
+}
+
+@media (max-width: 640px) {
+  .hero { min-height: 700px; }
+  .frame-stack { width: 88vw !important; height: 60vw !important; }
+  .blueprint-title { font-size: 32px !important; bottom: 8% !important; }
+  .blueprint-label { display: none !important; }
+}
