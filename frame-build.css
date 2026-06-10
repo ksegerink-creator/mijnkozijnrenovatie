@@ -1,5 +1,5 @@
 .blueprint-scroll.frame-build-mode .blueprint-drawing {
-  opacity: .36;
+  opacity: .20;
   transform:
     rotateX(calc(58deg - var(--scroll-progress) * 50deg))
     rotateZ(calc(-6deg + var(--scroll-progress) * 6deg))
@@ -10,15 +10,15 @@
 .frame-stack {
   position: absolute;
   left: 50%;
-  top: 48%;
-  width: min(760px, 72vw);
-  height: min(430px, 42vw);
+  top: 46%;
+  width: min(720px, 70vw);
+  height: min(500px, 48vw);
   transform-style: preserve-3d;
   transform:
     translate(-50%, -50%)
-    rotateX(calc(67deg - var(--scroll-progress) * 58deg))
-    rotateZ(calc(-8deg + var(--scroll-progress) * 8deg))
-    translateY(calc(64px - var(--scroll-progress) * 86px));
+    rotateX(calc(62deg - var(--scroll-progress) * 56deg))
+    rotateZ(calc(-7deg + var(--scroll-progress) * 7deg))
+    translateY(calc(72px - var(--scroll-progress) * 96px));
   transition: transform .08s linear;
   z-index: 3;
   pointer-events: none;
@@ -26,68 +26,147 @@
 
 .frame-layer {
   position: absolute;
-  inset: 0;
-  border: 2px solid rgba(244,239,228,.72);
-  background: rgba(244,239,228,.018);
-  box-shadow: 0 0 0 1px rgba(244,239,228,.06), 0 30px 80px rgba(0,0,0,.18);
   opacity: 0;
-  transform: translateZ(0) scale(.96);
-  transition: opacity .38s ease, transform .42s ease, border-color .38s ease, background .38s ease;
+  transform: translateZ(0) scale(.94);
+  transition: opacity .38s ease, transform .44s ease, border-color .38s ease, background .38s ease, box-shadow .38s ease;
 }
-.frame-layer::before,
-.frame-layer::after {
-  content: '';
-  position: absolute;
-  background: currentColor;
-  opacity: .74;
-}
-.frame-layer::before { left: 50%; top: 0; bottom: 0; width: 2px; transform: translateX(-50%); }
-.frame-layer::after { left: 0; right: 0; top: 50%; height: 2px; transform: translateY(-50%); }
 
 .frame-opening {
-  inset: 2% 2%;
-  color: rgba(244,239,228,.34);
-  border-color: rgba(244,239,228,.34);
-  transform: translateZ(-54px) scale(1.08);
+  inset: 1.5% 1.5%;
+  border: 1px solid rgba(244,239,228,.30);
+  box-shadow:
+    inset 0 0 0 1px rgba(244,239,228,.08),
+    0 28px 80px rgba(0,0,0,.24);
+  transform: translateZ(-68px) scale(1.08);
 }
+.frame-opening::before,
+.frame-opening::after {
+  content: '';
+  position: absolute;
+  background: rgba(244,239,228,.22);
+}
+.frame-opening::before { left: -34px; right: -34px; bottom: -32px; height: 2px; }
+.frame-opening::after { left: 0; top: -32px; bottom: -32px; width: 1px; box-shadow: 100% 0 0 rgba(244,239,228,.22); }
+
 .frame-outer {
-  inset: 7% 8%;
-  color: rgba(210,165,95,.7);
-  border-color: rgba(210,165,95,.72);
+  inset: 6% 7%;
+  border: 24px solid rgba(210,165,95,.76);
+  background: rgba(210,165,95,.035);
+  box-shadow:
+    inset 0 0 0 2px rgba(244,239,228,.34),
+    0 0 0 1px rgba(210,165,95,.18),
+    0 38px 100px rgba(0,0,0,.26);
   transform: translateZ(0) scale(.98);
 }
+.frame-outer::before,
+.frame-outer::after {
+  content: '';
+  position: absolute;
+  background: rgba(210,165,95,.72);
+}
+.frame-outer::before { left: 50%; top: -24px; bottom: -24px; width: 24px; transform: translateX(-50%); }
+.frame-outer::after { left: -24px; right: -24px; top: 50%; height: 18px; transform: translateY(-50%); }
+
 .frame-inner {
-  inset: 14% 16%;
-  color: rgba(244,239,228,.82);
-  border-color: rgba(244,239,228,.82);
-  transform: translateZ(58px) scale(.94);
+  inset: 13% 14%;
+  border: 10px solid rgba(244,239,228,.82);
+  background: rgba(244,239,228,.025);
+  box-shadow:
+    inset 0 0 0 2px rgba(244,239,228,.22),
+    0 0 0 1px rgba(244,239,228,.1);
+  transform: translateZ(70px) scale(.94);
 }
+.frame-inner::before,
+.frame-inner::after {
+  content: '';
+  position: absolute;
+  background: rgba(244,239,228,.82);
+}
+.frame-inner::before { left: 50%; top: -10px; bottom: -10px; width: 10px; transform: translateX(-50%); }
+.frame-inner::after { left: -10px; right: -10px; top: 50%; height: 8px; transform: translateY(-50%); }
+
 .frame-glass {
-  inset: 21% 23%;
-  color: rgba(155,202,221,.64);
-  border-color: rgba(155,202,221,.54);
-  background: linear-gradient(135deg, rgba(155,202,221,.16), rgba(244,239,228,.04));
-  transform: translateZ(112px) scale(.88);
+  inset: 18% 19%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 22px 26px;
+  border: 0;
+  transform: translateZ(124px) scale(.88);
 }
-.frame-glass::before { box-shadow: -120px 0 0 rgba(155,202,221,.35), 120px 0 0 rgba(155,202,221,.35); }
-.frame-glass::after { opacity: .28; }
+.frame-glass::before,
+.frame-glass::after { content: none; }
+.frame-glass span,
+.frame-glass i {
+  display: block;
+  border: 1px solid rgba(155,202,221,.7);
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.34), rgba(155,202,221,.14) 42%, rgba(255,255,255,.05)),
+    rgba(155,202,221,.10);
+  box-shadow: inset 0 0 32px rgba(255,255,255,.08);
+}
+.frame-glass span:nth-child(1) { grid-column: 1; grid-row: 1; }
+.frame-glass span:nth-child(2) { grid-column: 2; grid-row: 1; }
+.frame-glass span:nth-child(3) { grid-column: 1; grid-row: 2; }
+.frame-glass span:nth-child(4) { grid-column: 2; grid-row: 2; }
+
 .frame-comfort {
-  inset: 11% 11% auto;
-  height: 34px;
-  color: rgba(210,165,95,.82);
-  border-color: rgba(210,165,95,.8);
-  background: repeating-linear-gradient(90deg, rgba(210,165,95,.38) 0 18px, transparent 18px 34px);
-  transform: translateZ(162px) scale(.86);
+  left: 13%;
+  right: 13%;
+  top: 9.5%;
+  height: 38px;
+  border: 1px solid rgba(210,165,95,.86);
+  background:
+    repeating-linear-gradient(90deg, rgba(210,165,95,.48) 0 10px, transparent 10px 20px),
+    rgba(210,165,95,.08);
+  transform: translateZ(178px) scale(.86);
+  box-shadow: 0 14px 50px rgba(210,165,95,.12);
 }
 .frame-comfort::before,
-.frame-comfort::after { display: none; }
+.frame-comfort::after { content: none; }
+
+.frame-sill,
+.frame-handle {
+  position: absolute;
+  opacity: 0;
+  transition: opacity .38s ease, transform .44s ease;
+  pointer-events: none;
+}
+.frame-sill {
+  left: 0;
+  right: 0;
+  bottom: -42px;
+  height: 22px;
+  background: linear-gradient(90deg, rgba(244,239,228,.18), rgba(244,239,228,.82), rgba(244,239,228,.18));
+  transform: translateZ(40px) scaleX(.94);
+  box-shadow: 0 18px 50px rgba(0,0,0,.28);
+}
+.frame-handle {
+  right: 27%;
+  top: 47%;
+  width: 14px;
+  height: 72px;
+  border: 1px solid rgba(244,239,228,.76);
+  background: rgba(244,239,228,.18);
+  transform: translateZ(192px) scale(.86);
+}
+.frame-handle::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: -12px;
+  width: 34px;
+  height: 94px;
+  border: 1px solid rgba(244,239,228,.24);
+  transform: translateX(-50%);
+}
 
 .frame-build-mode.step-1 .frame-opening,
 .frame-build-mode.step-2 .frame-opening,
 .frame-build-mode.step-3 .frame-opening,
 .frame-build-mode.step-4 .frame-opening {
   opacity: 1;
-  transform: translateZ(-54px) scale(1);
+  transform: translateZ(-68px) scale(1);
 }
 .frame-build-mode.step-2 .frame-outer,
 .frame-build-mode.step-3 .frame-outer,
@@ -98,27 +177,35 @@
 .frame-build-mode.step-3 .frame-inner,
 .frame-build-mode.step-4 .frame-inner {
   opacity: 1;
-  transform: translateZ(58px) scale(1);
+  transform: translateZ(70px) scale(1);
 }
 .frame-build-mode.step-3 .frame-glass,
 .frame-build-mode.step-4 .frame-glass {
   opacity: 1;
-  transform: translateZ(112px) scale(1);
+  transform: translateZ(124px) scale(1);
 }
-.frame-build-mode.step-4 .frame-comfort {
+.frame-build-mode.step-4 .frame-comfort,
+.frame-build-mode.step-4 .frame-sill,
+.frame-build-mode.step-4 .frame-handle {
   opacity: 1;
-  transform: translateZ(162px) scale(1);
+  transform: translateZ(178px) scale(1);
 }
+.frame-build-mode.step-4 .frame-sill { transform: translateZ(40px) scaleX(1); }
+.frame-build-mode.step-4 .frame-handle { transform: translateZ(192px) scale(1); }
 
-.frame-build-mode.step-4 .frame-stack {
-  filter: drop-shadow(0 0 38px rgba(210,165,95,.1));
-}
+.frame-build-mode.step-4 .frame-stack { filter: drop-shadow(0 0 42px rgba(210,165,95,.12)); }
 
 @media (max-width: 760px) {
   .frame-stack {
     width: 88vw;
-    height: 52vw;
-    top: 46%;
+    height: 60vw;
+    top: 44%;
   }
-  .blueprint-scroll.frame-build-mode .blueprint-drawing { opacity: .22; }
+  .blueprint-scroll.frame-build-mode .blueprint-drawing { opacity: .16; }
+  .frame-outer { border-width: 16px; }
+  .frame-outer::before { top: -16px; bottom: -16px; width: 16px; }
+  .frame-outer::after { left: -16px; right: -16px; height: 12px; }
+  .frame-inner { border-width: 7px; }
+  .frame-glass { gap: 14px 16px; }
+  .frame-comfort { height: 28px; }
 }
