@@ -1,0 +1,83 @@
+.blueprint-scroll {
+  margin-top: -120px;
+  min-height: 225vh;
+}
+
+.blueprint-scroll::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 260px;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(8,10,8,0) 0%, rgba(8,10,8,.72) 52%, rgba(8,10,8,0) 100%),
+    radial-gradient(circle at 50% 0%, rgba(210,165,95,.14), transparent 34rem);
+}
+
+.blueprint-sticky {
+  padding-top: 54px;
+}
+
+.blueprint-inner {
+  height: min(820px, calc(100vh - 82px));
+}
+
+.blueprint-meta {
+  top: 18px;
+}
+
+.frame-stack {
+  top: 42%;
+  width: min(760px, 72vw);
+  height: min(500px, 46vw);
+}
+
+.blueprint-title {
+  bottom: 7%;
+}
+
+.blueprint-scroll:not(.step-1) .frame-opening {
+  opacity: .34;
+  transform: translateZ(-68px) scale(.98);
+}
+
+.blueprint-scroll:not(.step-1) .frame-outer {
+  opacity: .18;
+  transform: translateZ(0) scale(.96);
+}
+
+.blueprint-scroll:not(.step-1) .blueprint-drawing {
+  opacity: .16;
+}
+
+.blueprint-scroll:not(.step-1) .label-profile {
+  opacity: .38;
+  transform: translateY(0) translateZ(70px);
+}
+
+.blueprint-scroll:not(.step-4) .blueprint-title {
+  opacity: .22;
+  transform: translateY(8px) translateZ(120px);
+}
+
+.blueprint-scroll.is-active .blueprint-title {
+  opacity: .48;
+}
+
+.blueprint-scroll.step-4 .blueprint-title {
+  opacity: 1;
+}
+
+.intro-strip {
+  margin-top: -1px;
+}
+
+@media (max-width: 760px) {
+  .blueprint-scroll { margin-top: -70px; min-height: 195vh; }
+  .blueprint-sticky { padding-top: 62px; }
+  .frame-stack { top: 40%; width: 92vw; height: 62vw; }
+  .blueprint-title { bottom: 9%; }
+}
