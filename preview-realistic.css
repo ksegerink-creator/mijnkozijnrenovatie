@@ -1,3 +1,60 @@
-/* Disabled.
-   The experimental configurator preview overlay is turned off so the stable base preview can render normally.
-   Do not use this file to affect the 3D scroll section. */
+/* Configurator preview visibility fix only. No 3D scroll styles. */
+
+.preview-stage::before,
+.preview-stage::after{
+  display:none!important;
+  content:none!important;
+}
+
+.preview-stage{
+  overflow:visible!important;
+}
+
+.preview-topline{
+  margin-bottom:16px!important;
+}
+
+.window-scene{
+  opacity:1!important;
+  min-height:520px!important;
+  padding:32px!important;
+  display:grid!important;
+  place-items:center!important;
+  overflow:hidden!important;
+  background:
+    radial-gradient(circle at 50% 18%,rgba(255,255,255,.96),transparent 16rem),
+    linear-gradient(90deg,rgba(16,32,25,.035) 1px,transparent 1px),
+    linear-gradient(0deg,rgba(16,32,25,.028) 1px,transparent 1px),
+    linear-gradient(180deg,#f5eddf 0%,#d8cbb8 100%)!important;
+  background-size:auto,52px 52px,52px 52px,auto!important;
+}
+
+.window-preview{
+  opacity:1!important;
+  display:block!important;
+  position:relative!important;
+  width:min(620px,94%)!important;
+  max-height:460px!important;
+  filter:drop-shadow(0 38px 72px rgba(16,32,25,.18))!important;
+}
+
+.scene-badge{
+  opacity:1!important;
+  z-index:6!important;
+}
+
+.preview-summary{
+  opacity:1!important;
+  position:relative!important;
+  z-index:8!important;
+  margin-top:10px!important;
+}
+
+.preview-summary div{
+  background:#fffaf0!important;
+}
+
+@media(max-width:640px){
+  .window-scene{min-height:370px!important;padding:22px!important}
+  .window-preview{max-height:320px!important}
+}
