@@ -1,7 +1,9 @@
-/* Configurator preview visibility fix only. No 3D scroll styles. */
+/* Configurator preview only. Product-style render on clean white background. No 3D scroll styles. */
 
 .preview-stage::before,
-.preview-stage::after{
+.preview-stage::after,
+.window-scene::before,
+.window-scene::after{
   display:none!important;
   content:none!important;
 }
@@ -17,30 +19,112 @@
 .window-scene{
   opacity:1!important;
   min-height:520px!important;
-  padding:32px!important;
+  padding:38px!important;
   display:grid!important;
   place-items:center!important;
   overflow:hidden!important;
-  background:
-    radial-gradient(circle at 50% 18%,rgba(255,255,255,.96),transparent 16rem),
-    linear-gradient(90deg,rgba(16,32,25,.035) 1px,transparent 1px),
-    linear-gradient(0deg,rgba(16,32,25,.028) 1px,transparent 1px),
-    linear-gradient(180deg,#f5eddf 0%,#d8cbb8 100%)!important;
-  background-size:auto,52px 52px,52px 52px,auto!important;
+  background:#ffffff!important;
+  border:1px solid rgba(16,32,25,.10)!important;
+  border-radius:22px!important;
+}
+
+.wall-shape,
+.floor-shadow,
+.scene-badge{
+  display:none!important;
 }
 
 .window-preview{
+  --glass-fill:#ffffff!important;
   opacity:1!important;
   display:block!important;
   position:relative!important;
-  width:min(620px,94%)!important;
-  max-height:460px!important;
-  filter:drop-shadow(0 38px 72px rgba(16,32,25,.18))!important;
+  width:min(640px,92%)!important;
+  max-height:455px!important;
+  filter:drop-shadow(0 18px 34px rgba(16,32,25,.14))!important;
 }
 
-.scene-badge{
+#windowPreview #productGroup{
+  transform-origin:center!important;
+}
+
+#windowPreview #frameOuter{
+  fill:#d8d8d4!important;
+  stroke:rgba(0,0,0,.10)!important;
+  stroke-width:1!important;
+  filter:none!important;
+}
+
+#windowPreview #frameInner{
+  fill:#f4f4ef!important;
+  stroke:rgba(0,0,0,.10)!important;
+  stroke-width:1!important;
+}
+
+#windowPreview #glassBase,
+#windowPreview #glassRight{
+  fill:#ffffff!important;
+  stroke:#3d3d3b!important;
+  stroke-width:3!important;
+}
+
+#windowPreview #verticalDivider,
+#windowPreview #horizontalDivider,
+#windowPreview #sashFrameRight{
+  fill:#d8d8d4!important;
+  stroke:#b9b9b5!important;
+}
+
+#windowPreview #sashFrameRight{
+  stroke:#3d3d3b!important;
+  stroke-width:7!important;
+}
+
+#windowPreview #sashLine{
+  stroke:#ffffff!important;
+  opacity:0!important;
+}
+
+#windowPreview #handle,
+#windowPreview #handleBackplate{
+  fill:#4f4f4b!important;
+}
+
+#windowPreview #ventGroup,
+#windowPreview #trackGroup{
+  opacity:0!important;
+}
+
+#windowPreview #panelGroup rect{
+  fill:#d8d8d4!important;
+}
+
+#windowPreview[data-type='kozijn']{
+  width:min(650px,94%)!important;
+  transform:scale(1.08)!important;
+}
+
+#windowPreview[data-type='deur']{
+  width:min(430px,66%)!important;
+  transform:scale(1.04)!important;
+}
+
+#windowPreview[data-type='schuifpui']{
+  width:min(760px,100%)!important;
+  transform:scale(1.02)!important;
+}
+
+#windowPreview[data-type='meerdere']{
+  width:min(720px,98%)!important;
+  transform:scale(1.02)!important;
+}
+
+#windowPreview[data-type='schuifpui'] #trackGroup{
   opacity:1!important;
-  z-index:6!important;
+}
+
+#windowPreview[data-type='schuifpui'] #trackGroup rect{
+  fill:#b9b9b5!important;
 }
 
 .preview-summary{
