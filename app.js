@@ -1,63 +1,39 @@
 function injectBlueprintScroll() {
-  if (!document.querySelector('link[href="scroll.css"]')) {
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = 'scroll.css';
-    document.head.appendChild(link);
-  }
-  if (!document.querySelector('link[href="frame-build.css"]')) {
-    const frameLink = document.createElement('link');
-    frameLink.rel = 'stylesheet';
-    frameLink.href = 'frame-build.css';
-    document.head.appendChild(frameLink);
-  }
-  if (!document.querySelector('link[href="transition-fix.css"]')) {
-    const transitionLink = document.createElement('link');
-    transitionLink.rel = 'stylesheet';
-    transitionLink.href = 'transition-fix.css';
-    document.head.appendChild(transitionLink);
-  }
-  if (!document.querySelector('link[href="annotation-refine.css"]')) {
-    const annotationLink = document.createElement('link');
-    annotationLink.rel = 'stylesheet';
-    annotationLink.href = 'annotation-refine.css';
-    document.head.appendChild(annotationLink);
-  }
-  if (!document.querySelector('link[href="light-refine.css"]')) {
-    const lightLink = document.createElement('link');
-    lightLink.rel = 'stylesheet';
-    lightLink.href = 'light-refine.css';
-    document.head.appendChild(lightLink);
-  }
-  if (!document.querySelector('link[href="sunergy-style.css"]')) {
-    const sunergyLink = document.createElement('link');
-    sunergyLink.rel = 'stylesheet';
-    sunergyLink.href = 'sunergy-style.css';
-    document.head.appendChild(sunergyLink);
-  }
-  if (!document.querySelector('link[href="hero-showcase.css"]')) {
-    const heroLink = document.createElement('link');
-    heroLink.rel = 'stylesheet';
-    heroLink.href = 'hero-showcase.css';
-    document.head.appendChild(heroLink);
-  }
-  if (!document.querySelector('link[href="hero-realistic.css"]')) {
-    const realisticHeroLink = document.createElement('link');
-    realisticHeroLink.rel = 'stylesheet';
-    realisticHeroLink.href = 'hero-realistic.css';
-    document.head.appendChild(realisticHeroLink);
-  }
+  const stylesheets = [
+    'scroll.css',
+    'frame-build.css',
+    'transition-fix.css',
+    'annotation-refine.css',
+    'light-refine.css',
+    'sunergy-style.css',
+    'hero-showcase.css',
+    'hero-realistic.css',
+    'hero-benefits.css',
+    'real-3d-window.css'
+  ];
+
+  stylesheets.forEach((href) => {
+    if (!document.querySelector(`link[href="${href}"]`)) {
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = href;
+      document.head.appendChild(link);
+    }
+  });
 
   const hero = document.querySelector('.hero');
   if (!hero || document.querySelector('.blueprint-scroll')) return;
 
   const section = document.createElement('section');
-  section.className = 'blueprint-scroll frame-build-mode';
+  section.className = 'blueprint-scroll frame-build-mode real-3d-enabled';
   section.innerHTML = `
     <div class="blueprint-sticky">
       <div class="blueprint-inner">
         <div class="blueprint-orbit"></div>
-        <div class="blueprint-meta"><span>RENOVATION SYSTEM</span><span>SCROLL // FRAME BUILD SEQUENCE</span></div>
+        <div class="blueprint-meta"><span>RENOVATION SYSTEM</span><span>REAL 3D // WINDOW BUILD</span></div>
+        <div class="real-3d-stage" id="real3dWindowStage" aria-hidden="true">
+          <div class="real-3d-fallback-note">3D-preview wordt geladen...</div>
+        </div>
         <svg class="blueprint-drawing" viewBox="0 0 1200 620" aria-label="Technische kozijnrenovatie animatie">
           <rect class="blueprint-frame-fill" x="326" y="140" width="548" height="330" rx="0" />
           <rect class="blueprint-glass-fill" x="374" y="188" width="204" height="104" rx="0" />
@@ -85,14 +61,188 @@ function injectBlueprintScroll() {
           <div class="frame-sill"></div>
           <div class="frame-handle"></div>
         </div>
-        <div class="blueprint-label label-profile">Renovatieprofiel</div>
+        <div class="blueprint-label label-profile">Kunststof profiel</div>
         <div class="blueprint-label label-glass">HR++ / triple glas</div>
         <div class="blueprint-label label-vent">Ventilatie & comfort</div>
         <div class="blueprint-label label-mount">Inmeten & montage</div>
-        <h2 class="blueprint-title">Frame voor frame opgebouwd tot renovatieplan.</h2>
+        <h2 class="blueprint-title">Een renovatievoorstel dat je visueel begrijpt.</h2>
       </div>
     </div>`;
   hero.insertAdjacentElement('afterend', section);
+  initReal3DWindowScene();
+}
+
+let real3DSceneController = null;
+
+async function initReal3DWindowScene() {
+  const stage = document.querySelector('#real3dWindowStage');
+  if (!stage || real3DSceneController) return;
+
+  try {
+    const THREE = await import('https://unpkg.com/three@0.160.0/build/three.module.js');
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(34, 1, 0.1, 100);
+    camera.position.set(0, 0.55, 8.8);
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.7));
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    stage.appendChild(renderer.domElement);
+
+    const root = new THREE.Group();
+    root.rotation.x = -0.03;
+    scene.add(root);
+
+    const wallGroup = new THREE.Group();
+    const frameGroup = new THREE.Group();
+    const trimGroup = new THREE.Group();
+    const glassGroup = new THREE.Group();
+    const detailGroup = new THREE.Group();
+    root.add(wallGroup, frameGroup, trimGroup, glassGroup, detailGroup);
+
+    const matWall = new THREE.MeshStandardMaterial({ color: 0xf0eadc, roughness: 0.72, metalness: 0.02 });
+    const matReveal = new THREE.MeshStandardMaterial({ color: 0xd9cfbe, roughness: 0.78, metalness: 0.01 });
+    const matGreen = new THREE.MeshStandardMaterial({ color: 0x183c2d, roughness: 0.44, metalness: 0.08 });
+    const matGreenSide = new THREE.MeshStandardMaterial({ color: 0x0f2a20, roughness: 0.52, metalness: 0.05 });
+    const matTrim = new THREE.MeshStandardMaterial({ color: 0xfffaf0, roughness: 0.38, metalness: 0.03 });
+    const matGlass = new THREE.MeshPhysicalMaterial({
+      color: 0xc9edf0,
+      roughness: 0.08,
+      metalness: 0,
+      transmission: 0.55,
+      transparent: true,
+      opacity: 0.42,
+      thickness: 0.06,
+      clearcoat: 1,
+      clearcoatRoughness: 0.05
+    });
+    const matLime = new THREE.MeshStandardMaterial({ color: 0xd7f36b, roughness: 0.34, metalness: 0.05 });
+    const matShadow = new THREE.ShadowMaterial({ opacity: 0.18 });
+
+    const addBox = (group, name, size, position, material) => {
+      const mesh = new THREE.Mesh(new THREE.BoxGeometry(size[0], size[1], size[2]), material);
+      mesh.name = name;
+      mesh.position.set(position[0], position[1], position[2]);
+      mesh.castShadow = true;
+      mesh.receiveShadow = true;
+      group.add(mesh);
+      return mesh;
+    };
+
+    addBox(wallGroup, 'gevelvlak', [6.25, 4.65, 0.28], [0, 0, -0.22], matWall);
+    addBox(wallGroup, 'dagkant-links', [0.28, 4.2, 0.48], [-2.94, 0, 0.02], matReveal);
+    addBox(wallGroup, 'dagkant-rechts', [0.28, 4.2, 0.48], [2.94, 0, 0.02], matReveal);
+    addBox(wallGroup, 'dagkant-boven', [5.6, 0.28, 0.48], [0, 2.1, 0.02], matReveal);
+    addBox(wallGroup, 'dagkant-onder', [5.6, 0.28, 0.48], [0, -2.1, 0.02], matReveal);
+
+    addBox(frameGroup, 'buitenprofiel-links', [0.26, 3.78, 0.42], [-2.45, 0, 0.26], matGreen);
+    addBox(frameGroup, 'buitenprofiel-rechts', [0.26, 3.78, 0.42], [2.45, 0, 0.26], matGreen);
+    addBox(frameGroup, 'buitenprofiel-boven', [5.14, 0.26, 0.42], [0, 1.77, 0.26], matGreen);
+    addBox(frameGroup, 'buitenprofiel-onder', [5.14, 0.26, 0.42], [0, -1.77, 0.26], matGreen);
+    addBox(frameGroup, 'middenstijl', [0.22, 3.55, 0.48], [0, 0, 0.42], matGreenSide);
+    addBox(frameGroup, 'tussenregel', [4.92, 0.19, 0.48], [0, 0, 0.43], matGreenSide);
+
+    addBox(trimGroup, 'witte-kader-links', [0.12, 3.25, 0.16], [-2.18, 0, 0.61], matTrim);
+    addBox(trimGroup, 'witte-kader-rechts', [0.12, 3.25, 0.16], [2.18, 0, 0.61], matTrim);
+    addBox(trimGroup, 'witte-kader-boven', [4.36, 0.12, 0.16], [0, 1.51, 0.61], matTrim);
+    addBox(trimGroup, 'witte-kader-onder', [4.36, 0.12, 0.16], [0, -1.51, 0.61], matTrim);
+
+    const panePositions = [
+      [-1.14, 0.79, 0.72],
+      [1.14, 0.79, 0.72],
+      [-1.14, -0.79, 0.72],
+      [1.14, -0.79, 0.72]
+    ];
+    panePositions.forEach((pos, index) => addBox(glassGroup, `glas-${index + 1}`, [1.74, 1.18, 0.035], pos, matGlass));
+
+    addBox(detailGroup, 'ventilatie-rooster', [4.3, 0.18, 0.20], [0, 1.42, 0.86], matLime);
+    for (let i = 0; i < 18; i += 1) {
+      addBox(detailGroup, `rooster-lamel-${i}`, [0.045, 0.19, 0.23], [-2.0 + i * 0.235, 1.42, 0.97], matGreenSide);
+    }
+    addBox(detailGroup, 'greep-achterplaat', [0.12, 0.58, 0.08], [1.8, -0.05, 0.92], matTrim);
+    addBox(detailGroup, 'greep', [0.065, 0.46, 0.16], [1.86, -0.05, 1.02], matGreenSide);
+    addBox(detailGroup, 'vensterbank', [5.65, 0.18, 0.62], [0, -2.22, 0.42], matTrim);
+
+    const floor = new THREE.Mesh(new THREE.PlaneGeometry(9, 6), matShadow);
+    floor.rotation.x = -Math.PI / 2;
+    floor.position.set(0, -2.52, 1.4);
+    floor.receiveShadow = true;
+    scene.add(floor);
+
+    const hemi = new THREE.HemisphereLight(0xffffff, 0x6c7868, 1.65);
+    scene.add(hemi);
+    const key = new THREE.DirectionalLight(0xffffff, 2.1);
+    key.position.set(-3.8, 5.2, 5.8);
+    key.castShadow = true;
+    key.shadow.mapSize.set(1024, 1024);
+    scene.add(key);
+    const rim = new THREE.DirectionalLight(0xd7f36b, 0.85);
+    rim.position.set(4.4, 2.8, 3.2);
+    scene.add(rim);
+
+    const groups = [wallGroup, frameGroup, trimGroup, glassGroup, detailGroup];
+    const setOpacity = (group, opacity) => {
+      group.traverse((object) => {
+        if (!object.material) return;
+        object.material.transparent = opacity < 0.999 || object.material.transparent;
+        object.material.opacity = opacity;
+        object.visible = opacity > 0.015;
+      });
+    };
+
+    const resize = () => {
+      const rect = stage.getBoundingClientRect();
+      const width = Math.max(320, rect.width);
+      const height = Math.max(320, rect.height);
+      camera.aspect = width / height;
+      camera.updateProjectionMatrix();
+      renderer.setSize(width, height, false);
+    };
+
+    const applyProgress = (p) => {
+      const ease = (x) => 1 - Math.pow(1 - Math.max(0, Math.min(1, x)), 3);
+      const p1 = ease((p - 0.02) / 0.22);
+      const p2 = ease((p - 0.20) / 0.24);
+      const p3 = ease((p - 0.40) / 0.22);
+      const p4 = ease((p - 0.58) / 0.24);
+
+      setOpacity(wallGroup, 0.18 + 0.82 * p1);
+      setOpacity(frameGroup, p2);
+      setOpacity(trimGroup, p3);
+      setOpacity(glassGroup, Math.max(0.18, p3));
+      setOpacity(detailGroup, p4);
+
+      wallGroup.position.z = -0.35 + 0.35 * p1;
+      frameGroup.position.z = 1.25 - 1.0 * p2;
+      trimGroup.position.z = 1.65 - 1.0 * p3;
+      glassGroup.position.z = 2.0 - 1.05 * p3;
+      detailGroup.position.z = 2.3 - 1.1 * p4;
+
+      root.rotation.y = -0.28 + p * 0.42;
+      root.rotation.x = -0.20 + p * 0.14;
+      root.position.y = 0.18 - p * 0.06;
+      root.scale.setScalar(0.86 + p * 0.08);
+      camera.position.z = 9.0 - p * 1.1;
+      camera.position.y = 0.86 - p * 0.24;
+      camera.lookAt(0, 0, 0);
+    };
+
+    const render = () => renderer.render(scene, camera);
+    real3DSceneController = { resize, applyProgress, render };
+    resize();
+    applyProgress(0);
+    render();
+    window.addEventListener('resize', () => {
+      resize();
+      render();
+    });
+    updateBlueprintScroll();
+  } catch (error) {
+    stage.classList.add('is-fallback');
+    console.error('3D scene failed to load', error);
+  }
 }
 
 function updateBlueprintScroll() {
@@ -107,6 +257,10 @@ function updateBlueprintScroll() {
   section.classList.toggle('step-2', progress > 0.28);
   section.classList.toggle('step-3', progress > 0.48);
   section.classList.toggle('step-4', progress > 0.68);
+  if (real3DSceneController) {
+    real3DSceneController.applyProgress(progress);
+    real3DSceneController.render();
+  }
 }
 
 injectBlueprintScroll();
@@ -158,6 +312,7 @@ function state() {
 }
 function op(id, value) { const el = document.querySelector(id); if (el) el.style.opacity = value; }
 function setTheme(s) {
+  if (!preview) return;
   const t = themes[s.color] || themes.white;
   preview.style.setProperty('--frame-color', t[0]);
   preview.style.setProperty('--frame-highlight', t[1]);
@@ -168,7 +323,7 @@ function setTheme(s) {
   preview.dataset.glass = s.glass;
 }
 function applyPreview() {
-  if (!preview) return;
+  if (!preview || !form) return;
   const s = state();
   setTheme(s);
   const two = s.model === 'twee-vaks' || s.type === 'schuifpui' || s.type === 'meerdere';
@@ -184,13 +339,14 @@ function applyPreview() {
   op('#trackGroup', s.type === 'schuifpui' ? '.95' : '0');
   op('#sashFrameRight', two && s.type !== 'deur' ? '1' : '0');
   op('#glassGroupRight', two && s.type !== 'deur' ? '1' : '0');
-  summaryPill.textContent = `${labels.type[s.type]} - ${labels.model[s.model]}`;
-  sumType.textContent = labels.type[s.type];
-  sumModel.textContent = labels.model[s.model];
-  sumColor.textContent = labels.color[s.color];
-  sumPrice.textContent = s.montage ? 'Incl. montagecheck' : 'Na controle';
+  if (summaryPill) summaryPill.textContent = `${labels.type[s.type]} - ${labels.model[s.model]}`;
+  if (sumType) sumType.textContent = labels.type[s.type];
+  if (sumModel) sumModel.textContent = labels.model[s.model];
+  if (sumColor) sumColor.textContent = labels.color[s.color];
+  if (sumPrice) sumPrice.textContent = s.montage ? 'Incl. montagecheck' : 'Na controle';
 }
 function renderStep() {
+  if (!progressBar || !stepLabel || !stepTitle || !prevBtn || !nextBtn || !feedback) return;
   steps.forEach(step => step.classList.toggle('active', Number(step.dataset.step) === currentStep));
   progressBar.style.width = `${(currentStep / steps.length) * 100}%`;
   stepLabel.textContent = `Stap ${currentStep} van ${steps.length}`;
@@ -200,18 +356,22 @@ function renderStep() {
   nextBtn.textContent = currentStep === steps.length ? 'Aanvraag opslaan' : 'Volgende';
   feedback.textContent = '';
 }
-nextBtn.addEventListener('click', () => {
-  if (currentStep < steps.length) {
-    currentStep += 1;
-    renderStep();
-    applyPreview();
-    return;
-  }
-  localStorage.setItem('mkr_demo_lead', JSON.stringify({ created_at: new Date().toISOString(), configuration: state() }, null, 2));
-  feedback.textContent = 'Demo-aanvraag opgeslagen in je browser. Klaar voor koppeling met Supabase.';
-});
-prevBtn.addEventListener('click', () => { if (currentStep > 1) { currentStep -= 1; renderStep(); applyPreview(); } });
-form.addEventListener('input', applyPreview);
-form.addEventListener('change', applyPreview);
+if (nextBtn) {
+  nextBtn.addEventListener('click', () => {
+    if (currentStep < steps.length) {
+      currentStep += 1;
+      renderStep();
+      applyPreview();
+      return;
+    }
+    localStorage.setItem('mkr_demo_lead', JSON.stringify({ created_at: new Date().toISOString(), configuration: state() }, null, 2));
+    feedback.textContent = 'Demo-aanvraag opgeslagen in je browser. Klaar voor koppeling met Supabase.';
+  });
+}
+if (prevBtn) prevBtn.addEventListener('click', () => { if (currentStep > 1) { currentStep -= 1; renderStep(); applyPreview(); } });
+if (form) {
+  form.addEventListener('input', applyPreview);
+  form.addEventListener('change', applyPreview);
+}
 renderStep();
 applyPreview();
