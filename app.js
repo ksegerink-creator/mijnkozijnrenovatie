@@ -11,7 +11,8 @@ function injectBlueprintScroll() {
     'hero-benefits.css',
     'real-3d-window.css',
     'motion-benefits.css',
-    'config-premium.css'
+    'config-premium.css',
+    'stabilize-fix.css'
   ];
 
   stylesheets.forEach((href) => {
