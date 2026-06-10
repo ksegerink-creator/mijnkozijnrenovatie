@@ -23,6 +23,12 @@ function injectBlueprintScroll() {
     annotationLink.href = 'annotation-refine.css';
     document.head.appendChild(annotationLink);
   }
+  if (!document.querySelector('link[href="light-refine.css"]')) {
+    const lightLink = document.createElement('link');
+    lightLink.rel = 'stylesheet';
+    lightLink.href = 'light-refine.css';
+    document.head.appendChild(lightLink);
+  }
 
   const hero = document.querySelector('.hero');
   if (!hero || document.querySelector('.blueprint-scroll')) return;
