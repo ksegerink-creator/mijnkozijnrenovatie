@@ -44,8 +44,10 @@ function injectBlueprintScroll() {
           <div class="frame-layer frame-opening"></div>
           <div class="frame-layer frame-outer"></div>
           <div class="frame-layer frame-inner"></div>
-          <div class="frame-layer frame-glass"></div>
+          <div class="frame-layer frame-glass"><span></span><span></span><span></span><span></span></div>
           <div class="frame-layer frame-comfort"></div>
+          <div class="frame-sill"></div>
+          <div class="frame-handle"></div>
         </div>
         <div class="blueprint-label label-profile">Renovatieprofiel</div>
         <div class="blueprint-label label-glass">HR++ / triple glas</div>
