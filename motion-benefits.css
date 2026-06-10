@@ -1,0 +1,183 @@
+.motion-benefits {
+  position: absolute;
+  inset: 0;
+  z-index: 8;
+  pointer-events: none;
+}
+
+.motion-card {
+  position: absolute;
+  width: min(340px, 28vw);
+  padding: 22px 24px 23px;
+  background: rgba(255, 250, 240, .86);
+  border: 1px solid rgba(16, 32, 25, .12);
+  box-shadow: 0 30px 90px rgba(16, 32, 25, .16);
+  color: #102019;
+  opacity: 0;
+  transform: translateY(22px) scale(.96);
+  transition: opacity .45s ease, transform .45s cubic-bezier(.2,.8,.2,1), filter .45s ease;
+  backdrop-filter: blur(22px);
+}
+
+.motion-card::before {
+  content: attr(data-step);
+  position: absolute;
+  left: 20px;
+  top: -13px;
+  min-width: 34px;
+  height: 26px;
+  display: grid;
+  place-items: center;
+  background: #d7f36b;
+  color: #102019;
+  font-size: 10px;
+  font-weight: 850;
+  letter-spacing: .08em;
+}
+
+.motion-card::after {
+  content: '';
+  position: absolute;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(24,60,45,.58), transparent);
+  opacity: .72;
+}
+
+.motion-kicker {
+  display: block;
+  margin-bottom: 9px;
+  color: rgba(16,32,25,.52);
+  font-size: 10px;
+  font-weight: 850;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+.motion-card strong {
+  display: block;
+  margin-bottom: 10px;
+  font-size: clamp(22px, 2.1vw, 34px);
+  line-height: .94;
+  letter-spacing: -.065em;
+  font-weight: 850;
+}
+
+.motion-card p {
+  margin: 0;
+  color: rgba(16,32,25,.67);
+  font-size: 14px;
+  line-height: 1.52;
+}
+
+.motion-profile {
+  left: 6vw;
+  top: 28%;
+}
+.motion-profile::after {
+  left: 100%;
+  top: 52%;
+  width: 150px;
+}
+
+.motion-glass {
+  right: 6vw;
+  top: 26%;
+}
+.motion-glass::after {
+  right: 100%;
+  top: 52%;
+  width: 150px;
+  transform: rotate(180deg);
+}
+
+.motion-comfort {
+  right: 7vw;
+  bottom: 24%;
+}
+.motion-comfort::after {
+  right: 100%;
+  top: 38%;
+  width: 130px;
+  transform: rotate(180deg);
+}
+
+.motion-finish {
+  left: 7vw;
+  bottom: 25%;
+}
+.motion-finish::after {
+  left: 100%;
+  top: 38%;
+  width: 130px;
+}
+
+.real-3d-enabled.motion-phase-1 .motion-profile,
+.real-3d-enabled.motion-phase-2 .motion-glass,
+.real-3d-enabled.motion-phase-3 .motion-comfort,
+.real-3d-enabled.motion-phase-4 .motion-finish {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.real-3d-enabled.motion-phase-1 .motion-profile,
+.real-3d-enabled.motion-phase-2 .motion-glass,
+.real-3d-enabled.motion-phase-3 .motion-comfort,
+.real-3d-enabled.motion-phase-4 .motion-finish {
+  filter: none;
+}
+
+.real-3d-enabled.motion-phase-2 .motion-profile,
+.real-3d-enabled.motion-phase-3 .motion-glass,
+.real-3d-enabled.motion-phase-4 .motion-comfort {
+  opacity: .26;
+  transform: translateY(-4px) scale(.985);
+  filter: blur(.2px);
+}
+
+.real-3d-enabled .blueprint-label {
+  display: none !important;
+}
+
+.real-3d-enabled .blueprint-title {
+  bottom: 5.2% !important;
+  max-width: 700px !important;
+  font-size: clamp(30px, 3.35vw, 54px) !important;
+}
+
+@media (max-width: 1050px) {
+  .motion-card {
+    width: min(310px, 34vw);
+  }
+  .motion-card::after {
+    width: 76px !important;
+  }
+}
+
+@media (max-width: 760px) {
+  .motion-benefits {
+    display: grid;
+    align-items: end;
+    padding: 0 18px 96px;
+  }
+  .motion-card {
+    left: 18px !important;
+    right: 18px !important;
+    top: auto !important;
+    bottom: 28px !important;
+    width: auto;
+    padding: 18px 18px 19px;
+  }
+  .motion-card::after {
+    display: none;
+  }
+  .motion-card strong {
+    font-size: 25px;
+  }
+  .motion-card p {
+    font-size: 13px;
+  }
+  .real-3d-enabled .blueprint-title {
+    bottom: 14% !important;
+    font-size: 31px !important;
+  }
+}
