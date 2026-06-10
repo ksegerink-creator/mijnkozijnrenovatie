@@ -11,6 +11,12 @@ function injectBlueprintScroll() {
     frameLink.href = 'frame-build.css';
     document.head.appendChild(frameLink);
   }
+  if (!document.querySelector('link[href="transition-fix.css"]')) {
+    const transitionLink = document.createElement('link');
+    transitionLink.rel = 'stylesheet';
+    transitionLink.href = 'transition-fix.css';
+    document.head.appendChild(transitionLink);
+  }
 
   const hero = document.querySelector('.hero');
   if (!hero || document.querySelector('.blueprint-scroll')) return;
