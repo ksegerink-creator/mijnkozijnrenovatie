@@ -10,7 +10,8 @@ function injectBlueprintScroll() {
     'hero-realistic.css',
     'hero-benefits.css',
     'real-3d-window.css',
-    'motion-benefits.css'
+    'motion-benefits.css',
+    'config-premium.css'
   ];
 
   stylesheets.forEach((href) => {
@@ -114,17 +115,7 @@ async function initReal3DWindowScene() {
     const matGreen = new THREE.MeshStandardMaterial({ color: 0x183c2d, roughness: 0.44, metalness: 0.08 });
     const matGreenSide = new THREE.MeshStandardMaterial({ color: 0x0f2a20, roughness: 0.52, metalness: 0.05 });
     const matTrim = new THREE.MeshStandardMaterial({ color: 0xfffaf0, roughness: 0.38, metalness: 0.03 });
-    const matGlass = new THREE.MeshPhysicalMaterial({
-      color: 0xc9edf0,
-      roughness: 0.08,
-      metalness: 0,
-      transmission: 0.55,
-      transparent: true,
-      opacity: 0.42,
-      thickness: 0.06,
-      clearcoat: 1,
-      clearcoatRoughness: 0.05
-    });
+    const matGlass = new THREE.MeshPhysicalMaterial({ color: 0xc9edf0, roughness: 0.08, metalness: 0, transmission: 0.55, transparent: true, opacity: 0.42, thickness: 0.06, clearcoat: 1, clearcoatRoughness: 0.05 });
     const matLime = new THREE.MeshStandardMaterial({ color: 0xd7f36b, roughness: 0.34, metalness: 0.05 });
     const matShadow = new THREE.ShadowMaterial({ opacity: 0.18 });
 
@@ -143,22 +134,17 @@ async function initReal3DWindowScene() {
     addBox(wallGroup, 'dagkant-rechts', [0.28, 4.2, 0.48], [2.94, 0, 0.02], matReveal);
     addBox(wallGroup, 'dagkant-boven', [5.6, 0.28, 0.48], [0, 2.1, 0.02], matReveal);
     addBox(wallGroup, 'dagkant-onder', [5.6, 0.28, 0.48], [0, -2.1, 0.02], matReveal);
-
     addBox(frameGroup, 'buitenprofiel-links', [0.26, 3.78, 0.42], [-2.45, 0, 0.26], matGreen);
     addBox(frameGroup, 'buitenprofiel-rechts', [0.26, 3.78, 0.42], [2.45, 0, 0.26], matGreen);
     addBox(frameGroup, 'buitenprofiel-boven', [5.14, 0.26, 0.42], [0, 1.77, 0.26], matGreen);
     addBox(frameGroup, 'buitenprofiel-onder', [5.14, 0.26, 0.42], [0, -1.77, 0.26], matGreen);
     addBox(frameGroup, 'middenstijl', [0.22, 3.55, 0.48], [0, 0, 0.42], matGreenSide);
     addBox(frameGroup, 'tussenregel', [4.92, 0.19, 0.48], [0, 0, 0.43], matGreenSide);
-
     addBox(trimGroup, 'witte-kader-links', [0.12, 3.25, 0.16], [-2.18, 0, 0.61], matTrim);
     addBox(trimGroup, 'witte-kader-rechts', [0.12, 3.25, 0.16], [2.18, 0, 0.61], matTrim);
     addBox(trimGroup, 'witte-kader-boven', [4.36, 0.12, 0.16], [0, 1.51, 0.61], matTrim);
     addBox(trimGroup, 'witte-kader-onder', [4.36, 0.12, 0.16], [0, -1.51, 0.61], matTrim);
-
-    const panePositions = [[-1.14, 0.79, 0.72], [1.14, 0.79, 0.72], [-1.14, -0.79, 0.72], [1.14, -0.79, 0.72]];
-    panePositions.forEach((pos, index) => addBox(glassGroup, `glas-${index + 1}`, [1.74, 1.18, 0.035], pos, matGlass));
-
+    [[-1.14, 0.79, 0.72], [1.14, 0.79, 0.72], [-1.14, -0.79, 0.72], [1.14, -0.79, 0.72]].forEach((pos, index) => addBox(glassGroup, `glas-${index + 1}`, [1.74, 1.18, 0.035], pos, matGlass));
     addBox(detailGroup, 'ventilatie-rooster', [4.3, 0.18, 0.20], [0, 1.42, 0.86], matLime);
     for (let i = 0; i < 18; i += 1) addBox(detailGroup, `rooster-lamel-${i}`, [0.045, 0.19, 0.23], [-2.0 + i * 0.235, 1.42, 0.97], matGreenSide);
     addBox(detailGroup, 'greep-achterplaat', [0.12, 0.58, 0.08], [1.8, -0.05, 0.92], matTrim);
@@ -170,7 +156,6 @@ async function initReal3DWindowScene() {
     floor.position.set(0, -2.52, 1.4);
     floor.receiveShadow = true;
     scene.add(floor);
-
     const hemi = new THREE.HemisphereLight(0xffffff, 0x6c7868, 1.65);
     scene.add(hemi);
     const key = new THREE.DirectionalLight(0xffffff, 2.1);
@@ -190,7 +175,6 @@ async function initReal3DWindowScene() {
         object.visible = opacity > 0.015;
       });
     };
-
     const resize = () => {
       const rect = stage.getBoundingClientRect();
       const width = Math.max(320, rect.width);
@@ -199,7 +183,6 @@ async function initReal3DWindowScene() {
       camera.updateProjectionMatrix();
       renderer.setSize(width, height, false);
     };
-
     const applyProgress = (p) => {
       const ease = (x) => 1 - Math.pow(1 - Math.max(0, Math.min(1, x)), 3);
       const p1 = ease((p - 0.02) / 0.22);
@@ -224,7 +207,6 @@ async function initReal3DWindowScene() {
       camera.position.y = 0.86 - p * 0.24;
       camera.lookAt(0, 0, 0);
     };
-
     const render = () => renderer.render(scene, camera);
     real3DSceneController = { resize, applyProgress, render };
     resize();
