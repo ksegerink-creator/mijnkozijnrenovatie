@@ -29,6 +29,12 @@ function injectBlueprintScroll() {
     lightLink.href = 'light-refine.css';
     document.head.appendChild(lightLink);
   }
+  if (!document.querySelector('link[href="sunergy-style.css"]')) {
+    const sunergyLink = document.createElement('link');
+    sunergyLink.rel = 'stylesheet';
+    sunergyLink.href = 'sunergy-style.css';
+    document.head.appendChild(sunergyLink);
+  }
 
   const hero = document.querySelector('.hero');
   if (!hero || document.querySelector('.blueprint-scroll')) return;
