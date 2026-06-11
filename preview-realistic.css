@@ -8,13 +8,8 @@
   content:none!important;
 }
 
-.preview-stage{
-  overflow:visible!important;
-}
-
-.preview-topline{
-  margin-bottom:14px!important;
-}
+.preview-stage{ overflow:visible!important; }
+.preview-topline{ margin-bottom:14px!important; }
 
 .window-scene{
   opacity:1!important;
@@ -30,11 +25,7 @@
   box-shadow:0 26px 70px rgba(16,32,25,.13)!important;
 }
 
-.wall-shape,
-.floor-shadow,
-.scene-badge{
-  display:none!important;
-}
+.wall-shape,.floor-shadow,.scene-badge{ display:none!important; }
 
 .window-preview{
   --glass-fill:#f3fbff!important;
@@ -47,115 +38,63 @@
   filter:drop-shadow(0 22px 38px rgba(16,32,25,.22))!important;
 }
 
-#windowPreview *{
-  opacity:1;
+#windowPreview *{ opacity:1; }
+#windowPreview #productGroup{ transform-origin:center!important; }
+
+#windowPreview #frameOuter{ fill:#d4d4cf!important; stroke:#5e625c!important; stroke-width:4!important; filter:none!important; }
+#windowPreview #frameInner{ fill:#f7f7f2!important; stroke:#767a72!important; stroke-width:3!important; }
+#windowPreview #glassBase,#windowPreview #glassRight{ fill:#eef8ff!important; stroke:#1f2522!important; stroke-width:5!important; }
+#windowPreview #verticalDivider,#windowPreview #horizontalDivider{ fill:#c5c5bf!important; stroke:#636862!important; stroke-width:2!important; }
+#windowPreview #sashFrameRight{ fill:none!important; stroke:#202622!important; stroke-width:12!important; }
+#windowPreview #sashLine{ stroke:#ffffff!important; stroke-width:9!important; opacity:.95!important; }
+#windowPreview #handleBackplate{ fill:#d7ddd9!important; opacity:1!important; }
+#windowPreview #handle{ fill:#313734!important; opacity:1!important; }
+#windowPreview #ventGroup rect{ fill:#d4d4cf!important; stroke:#6d716a!important; stroke-width:2!important; }
+#windowPreview #trackGroup rect{ fill:#b8b8b2!important; stroke:#777b73!important; stroke-width:2!important; }
+#windowPreview #panelGroup rect{ fill:#d7d7d1!important; stroke:#6f736c!important; stroke-width:3!important; }
+
+#windowPreview[data-type='kozijn']{ width:min(700px,98%)!important; transform:scale(1.14)!important; }
+#windowPreview[data-type='schuifpui']{ width:min(780px,100%)!important; transform:scale(1.06)!important; }
+#windowPreview[data-type='meerdere']{ width:min(760px,100%)!important; transform:scale(1.06)!important; }
+
+#windowPreview[data-type='deur']{ opacity:0!important; }
+.window-scene:has(#windowPreview[data-type='deur'])::before{
+  content:''!important;
+  display:block!important;
+  position:absolute!important;
+  left:50%!important;
+  top:50%!important;
+  width:300px!important;
+  height:500px!important;
+  transform:translate(-50%,-50%)!important;
+  z-index:3!important;
+  border-radius:10px!important;
+  border:4px solid #525852!important;
+  background:#d4d4cf!important;
+  box-shadow:inset 0 0 0 22px #eeeeea, inset 0 0 0 30px #60665f, inset 0 0 0 44px #f8f8f4, 0 28px 48px rgba(16,32,25,.24)!important;
+}
+.window-scene:has(#windowPreview[data-type='deur'])::after{
+  content:''!important;
+  display:block!important;
+  position:absolute!important;
+  left:50%!important;
+  top:50%!important;
+  width:210px!important;
+  height:380px!important;
+  transform:translate(-50%,-50%)!important;
+  z-index:4!important;
+  border-radius:8px!important;
+  border:4px solid #252b27!important;
+  background:linear-gradient(#eef9ff,#d8edf8) 50% 22%/170px 180px no-repeat, linear-gradient(#d3d3cd,#c2c2bc) 50% 82%/170px 112px no-repeat, linear-gradient(#252b27,#252b27) 50% 64%/190px 5px no-repeat, #f7f7f2!important;
+  box-shadow:22px 0 0 -10px #cfd7d3, 34px 0 0 -20px #242a26!important;
 }
 
-#windowPreview #productGroup{
-  transform-origin:center!important;
-}
-
-/* Duidelijke, productachtige basis: contrastrijk profiel op witte achtergrond. */
-#windowPreview #frameOuter{
-  fill:#d4d4cf!important;
-  stroke:#5e625c!important;
-  stroke-width:4!important;
-  filter:none!important;
-}
-
-#windowPreview #frameInner{
-  fill:#f7f7f2!important;
-  stroke:#767a72!important;
-  stroke-width:3!important;
-}
-
-#windowPreview #glassBase,
-#windowPreview #glassRight{
-  fill:#eef8ff!important;
-  stroke:#1f2522!important;
-  stroke-width:5!important;
-}
-
-#windowPreview #verticalDivider,
-#windowPreview #horizontalDivider{
-  fill:#c5c5bf!important;
-  stroke:#636862!important;
-  stroke-width:2!important;
-}
-
-#windowPreview #sashFrameRight{
-  fill:none!important;
-  stroke:#202622!important;
-  stroke-width:12!important;
-}
-
-#windowPreview #sashLine{
-  stroke:#ffffff!important;
-  stroke-width:9!important;
-  opacity:.95!important;
-}
-
-#windowPreview #handleBackplate{
-  fill:#d7ddd9!important;
-  opacity:1!important;
-}
-
-#windowPreview #handle{
-  fill:#313734!important;
-  opacity:1!important;
-}
-
-#windowPreview #ventGroup rect{
-  fill:#d4d4cf!important;
-  stroke:#6d716a!important;
-  stroke-width:2!important;
-}
-
-#windowPreview #trackGroup rect{
-  fill:#b8b8b2!important;
-  stroke:#777b73!important;
-  stroke-width:2!important;
-}
-
-#windowPreview #panelGroup rect{
-  fill:#d7d7d1!important;
-  stroke:#6f736c!important;
-  stroke-width:3!important;
-}
-
-#windowPreview[data-type='kozijn']{
-  width:min(700px,98%)!important;
-  transform:scale(1.14)!important;
-}
-
-#windowPreview[data-type='deur']{
-  width:min(520px,76%)!important;
-  transform:scale(1.09)!important;
-}
-
-#windowPreview[data-type='schuifpui']{
-  width:min(780px,100%)!important;
-  transform:scale(1.06)!important;
-}
-
-#windowPreview[data-type='meerdere']{
-  width:min(760px,100%)!important;
-  transform:scale(1.06)!important;
-}
-
-.preview-summary{
-  opacity:1!important;
-  position:relative!important;
-  z-index:8!important;
-  margin-top:10px!important;
-}
-
-.preview-summary div{
-  background:#fffaf0!important;
-  border:1px solid rgba(16,32,25,.13)!important;
-}
+.preview-summary{ opacity:1!important; position:relative!important; z-index:8!important; margin-top:10px!important; }
+.preview-summary div{ background:#fffaf0!important; border:1px solid rgba(16,32,25,.13)!important; }
 
 @media(max-width:640px){
   .window-scene{min-height:390px!important;padding:18px!important}
   .window-preview{max-height:340px!important}
+  .window-scene:has(#windowPreview[data-type='deur'])::before{width:210px!important;height:350px!important}
+  .window-scene:has(#windowPreview[data-type='deur'])::after{width:150px!important;height:270px!important}
 }
