@@ -1,8 +1,9 @@
-/* Configurator preview only. Product-style render on clean white background. No 3D scroll styles. */
+/* Configurator preview only. Clear product render. No 3D scroll styles. */
 
 .preview-stage::before,
 .preview-stage::after,
-.window-scene::before{
+.window-scene::before,
+.window-scene::after{
   display:none!important;
   content:none!important;
 }
@@ -12,20 +13,21 @@
 }
 
 .preview-topline{
-  margin-bottom:16px!important;
+  margin-bottom:14px!important;
 }
 
 .window-scene{
   opacity:1!important;
-  min-height:520px!important;
-  padding:38px!important;
+  min-height:560px!important;
+  padding:24px!important;
   display:grid!important;
   place-items:center!important;
   overflow:hidden!important;
   position:relative!important;
   background:#ffffff!important;
-  border:1px solid rgba(16,32,25,.10)!important;
+  border:2px solid rgba(16,32,25,.16)!important;
   border-radius:22px!important;
+  box-shadow:0 26px 70px rgba(16,32,25,.13)!important;
 }
 
 .wall-shape,
@@ -35,145 +37,110 @@
 }
 
 .window-preview{
-  --glass-fill:#ffffff!important;
+  --glass-fill:#f3fbff!important;
   opacity:1!important;
   display:block!important;
   position:relative!important;
-  z-index:1!important;
-  width:min(640px,92%)!important;
-  max-height:455px!important;
-  filter:drop-shadow(0 18px 34px rgba(16,32,25,.14))!important;
-}
-
-/*
-  Product image slots.
-  Plaats echte, rechtenvrije/leverancier-goedgekeurde productbeelden op deze paden:
-  - assets/products/kozijn.webp / .jpg / .png
-  - assets/products/deur.webp / .jpg / .png
-  - assets/products/schuifpui.webp / .jpg / .png
-  - assets/products/meerdere.webp / .jpg / .png
-
-  De afbeelding wordt als productlaag over de bestaande SVG-preview gelegd.
-  Als er nog geen bestand bestaat, blijft de huidige SVG fallback zichtbaar.
-*/
-.window-scene::after{
-  content:''!important;
-  display:block!important;
-  position:absolute!important;
-  left:50%!important;
-  top:50%!important;
-  z-index:3!important;
-  width:min(650px,92%)!important;
-  height:455px!important;
-  transform:translate(-50%,-50%)!important;
-  background-repeat:no-repeat!important;
-  background-position:center!important;
-  background-size:contain!important;
-  pointer-events:none!important;
-  filter:drop-shadow(0 18px 34px rgba(16,32,25,.14))!important;
-}
-
-.window-scene:has(#windowPreview[data-type='kozijn'])::after{
-  width:min(650px,94%)!important;
-  background-image:url('assets/products/kozijn.webp'),url('assets/products/kozijn.jpg'),url('assets/products/kozijn.png')!important;
-}
-
-.window-scene:has(#windowPreview[data-type='deur'])::after{
-  width:min(430px,66%)!important;
-  background-image:url('assets/products/deur.webp'),url('assets/products/deur.jpg'),url('assets/products/deur.png')!important;
-}
-
-.window-scene:has(#windowPreview[data-type='schuifpui'])::after{
-  width:min(760px,100%)!important;
-  background-image:url('assets/products/schuifpui.webp'),url('assets/products/schuifpui.jpg'),url('assets/products/schuifpui.png')!important;
-}
-
-.window-scene:has(#windowPreview[data-type='meerdere'])::after{
+  z-index:2!important;
   width:min(720px,98%)!important;
-  background-image:url('assets/products/meerdere.webp'),url('assets/products/meerdere.jpg'),url('assets/products/meerdere.png')!important;
+  max-height:510px!important;
+  filter:drop-shadow(0 22px 38px rgba(16,32,25,.22))!important;
+}
+
+#windowPreview *{
+  opacity:1;
 }
 
 #windowPreview #productGroup{
   transform-origin:center!important;
 }
 
+/* Duidelijke, productachtige basis: contrastrijk profiel op witte achtergrond. */
 #windowPreview #frameOuter{
-  fill:#d8d8d4!important;
-  stroke:rgba(0,0,0,.10)!important;
-  stroke-width:1!important;
+  fill:#d4d4cf!important;
+  stroke:#5e625c!important;
+  stroke-width:4!important;
   filter:none!important;
 }
 
 #windowPreview #frameInner{
-  fill:#f4f4ef!important;
-  stroke:rgba(0,0,0,.10)!important;
-  stroke-width:1!important;
+  fill:#f7f7f2!important;
+  stroke:#767a72!important;
+  stroke-width:3!important;
 }
 
 #windowPreview #glassBase,
 #windowPreview #glassRight{
-  fill:#ffffff!important;
-  stroke:#3d3d3b!important;
-  stroke-width:3!important;
+  fill:#eef8ff!important;
+  stroke:#1f2522!important;
+  stroke-width:5!important;
 }
 
 #windowPreview #verticalDivider,
-#windowPreview #horizontalDivider,
-#windowPreview #sashFrameRight{
-  fill:#d8d8d4!important;
-  stroke:#b9b9b5!important;
+#windowPreview #horizontalDivider{
+  fill:#c5c5bf!important;
+  stroke:#636862!important;
+  stroke-width:2!important;
 }
 
 #windowPreview #sashFrameRight{
-  stroke:#3d3d3b!important;
-  stroke-width:7!important;
+  fill:none!important;
+  stroke:#202622!important;
+  stroke-width:12!important;
 }
 
 #windowPreview #sashLine{
   stroke:#ffffff!important;
-  opacity:0!important;
+  stroke-width:9!important;
+  opacity:.95!important;
 }
 
-#windowPreview #handle,
 #windowPreview #handleBackplate{
-  fill:#4f4f4b!important;
-}
-
-#windowPreview #ventGroup,
-#windowPreview #trackGroup{
-  opacity:0!important;
-}
-
-#windowPreview #panelGroup rect{
-  fill:#d8d8d4!important;
-}
-
-#windowPreview[data-type='kozijn']{
-  width:min(650px,94%)!important;
-  transform:scale(1.08)!important;
-}
-
-#windowPreview[data-type='deur']{
-  width:min(430px,66%)!important;
-  transform:scale(1.04)!important;
-}
-
-#windowPreview[data-type='schuifpui']{
-  width:min(760px,100%)!important;
-  transform:scale(1.02)!important;
-}
-
-#windowPreview[data-type='meerdere']{
-  width:min(720px,98%)!important;
-  transform:scale(1.02)!important;
-}
-
-#windowPreview[data-type='schuifpui'] #trackGroup{
+  fill:#d7ddd9!important;
   opacity:1!important;
 }
 
-#windowPreview[data-type='schuifpui'] #trackGroup rect{
-  fill:#b9b9b5!important;
+#windowPreview #handle{
+  fill:#313734!important;
+  opacity:1!important;
+}
+
+#windowPreview #ventGroup rect{
+  fill:#d4d4cf!important;
+  stroke:#6d716a!important;
+  stroke-width:2!important;
+}
+
+#windowPreview #trackGroup rect{
+  fill:#b8b8b2!important;
+  stroke:#777b73!important;
+  stroke-width:2!important;
+}
+
+#windowPreview #panelGroup rect{
+  fill:#d7d7d1!important;
+  stroke:#6f736c!important;
+  stroke-width:3!important;
+}
+
+#windowPreview[data-type='kozijn']{
+  width:min(700px,98%)!important;
+  transform:scale(1.14)!important;
+}
+
+#windowPreview[data-type='deur']{
+  width:min(520px,76%)!important;
+  transform:scale(1.09)!important;
+}
+
+#windowPreview[data-type='schuifpui']{
+  width:min(780px,100%)!important;
+  transform:scale(1.06)!important;
+}
+
+#windowPreview[data-type='meerdere']{
+  width:min(760px,100%)!important;
+  transform:scale(1.06)!important;
 }
 
 .preview-summary{
@@ -185,10 +152,10 @@
 
 .preview-summary div{
   background:#fffaf0!important;
+  border:1px solid rgba(16,32,25,.13)!important;
 }
 
 @media(max-width:640px){
-  .window-scene{min-height:370px!important;padding:22px!important}
-  .window-preview{max-height:320px!important}
-  .window-scene::after{height:320px!important}
+  .window-scene{min-height:390px!important;padding:18px!important}
+  .window-preview{max-height:340px!important}
 }
