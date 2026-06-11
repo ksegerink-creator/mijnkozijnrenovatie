@@ -2,8 +2,7 @@
 
 .preview-stage::before,
 .preview-stage::after,
-.window-scene::before,
-.window-scene::after{
+.window-scene::before{
   display:none!important;
   content:none!important;
 }
@@ -23,6 +22,7 @@
   display:grid!important;
   place-items:center!important;
   overflow:hidden!important;
+  position:relative!important;
   background:#ffffff!important;
   border:1px solid rgba(16,32,25,.10)!important;
   border-radius:22px!important;
@@ -39,9 +39,58 @@
   opacity:1!important;
   display:block!important;
   position:relative!important;
+  z-index:1!important;
   width:min(640px,92%)!important;
   max-height:455px!important;
   filter:drop-shadow(0 18px 34px rgba(16,32,25,.14))!important;
+}
+
+/*
+  Product image slots.
+  Plaats echte, rechtenvrije/leverancier-goedgekeurde productbeelden op deze paden:
+  - assets/products/kozijn.webp / .jpg / .png
+  - assets/products/deur.webp / .jpg / .png
+  - assets/products/schuifpui.webp / .jpg / .png
+  - assets/products/meerdere.webp / .jpg / .png
+
+  De afbeelding wordt als productlaag over de bestaande SVG-preview gelegd.
+  Als er nog geen bestand bestaat, blijft de huidige SVG fallback zichtbaar.
+*/
+.window-scene::after{
+  content:''!important;
+  display:block!important;
+  position:absolute!important;
+  left:50%!important;
+  top:50%!important;
+  z-index:3!important;
+  width:min(650px,92%)!important;
+  height:455px!important;
+  transform:translate(-50%,-50%)!important;
+  background-repeat:no-repeat!important;
+  background-position:center!important;
+  background-size:contain!important;
+  pointer-events:none!important;
+  filter:drop-shadow(0 18px 34px rgba(16,32,25,.14))!important;
+}
+
+.window-scene:has(#windowPreview[data-type='kozijn'])::after{
+  width:min(650px,94%)!important;
+  background-image:url('assets/products/kozijn.webp'),url('assets/products/kozijn.jpg'),url('assets/products/kozijn.png')!important;
+}
+
+.window-scene:has(#windowPreview[data-type='deur'])::after{
+  width:min(430px,66%)!important;
+  background-image:url('assets/products/deur.webp'),url('assets/products/deur.jpg'),url('assets/products/deur.png')!important;
+}
+
+.window-scene:has(#windowPreview[data-type='schuifpui'])::after{
+  width:min(760px,100%)!important;
+  background-image:url('assets/products/schuifpui.webp'),url('assets/products/schuifpui.jpg'),url('assets/products/schuifpui.png')!important;
+}
+
+.window-scene:has(#windowPreview[data-type='meerdere'])::after{
+  width:min(720px,98%)!important;
+  background-image:url('assets/products/meerdere.webp'),url('assets/products/meerdere.jpg'),url('assets/products/meerdere.png')!important;
 }
 
 #windowPreview #productGroup{
@@ -141,4 +190,5 @@
 @media(max-width:640px){
   .window-scene{min-height:370px!important;padding:22px!important}
   .window-preview{max-height:320px!important}
+  .window-scene::after{height:320px!important}
 }
